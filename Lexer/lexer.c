@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/12 17:47:59 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/12 18:57:14 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static int check_if_empty(char *args)
 static void define_type(char *args, int cur, t_types *type)
 {
 	if (args[cur] == '\'')
-		*type = SPECIAL_S;
+		*type = SPECIAL_SQUOTE;
 	else if (args[cur] == '\"')
-		*type = SPECIAL_D;
+		*type = SPECIAL_DQUOTE;
 	else if (ft_ismeta(args[cur]))
 		*type = META;
 	else
@@ -58,7 +58,7 @@ void ft_tokenizing(t_data *data)
 		data->start = data->current;
 		skip_initial_spaces(data->args, data);
 		define_type(data->args, data->current, &type);
-		if (type == SPECIAL_S || type == SPECIAL_D)
+		if (type == SPECIAL_SQUOTE || type == SPECIAL_DQUOTE)
 			ft_special_token(data, type);
 		else if (type == META)
 			ft_meta_token(data, type);

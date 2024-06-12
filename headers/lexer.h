@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:21 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/12 18:06:55 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/12 18:57:59 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 typedef enum s_types
 {
-	SPECIAL_S,
-	SPECIAL_D,
-	META,
+	SPECIAL_SQUOTE,
+	SPECIAL_DQUOTE,
+	META, // check for $ | > < >> <<
 	WORD,
-	WORD_D,
+	WORD_WITH_DQUOTE_INSIDE, //check for $
 } t_types;
 
 typedef struct s_tkn_data
