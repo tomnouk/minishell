@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:38:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/11 19:03:30 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/13 19:02:05 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void ft_special_token(t_data *data, t_types type)
 {
-	
+	// amir ha moddificato
+	// e ma qua e' diverso
+	//altre modifiche
 }
