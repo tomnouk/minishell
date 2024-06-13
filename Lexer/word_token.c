@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/13 16:42:00 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/14 00:24:38 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void  ft_copier(int *i, int c, char *string, t_data *data, int *quote_fla
 	}
 }
 
-static void quote_removal_copy(char *string, t_data *data, t_tkn_data *token, t_list *node, int quote_flag)
+void quote_removal_copy(char *string, t_data *data, t_tkn_data *token, t_list *node, int quote_flag)
 {
 	int len;
 	int i;
@@ -110,7 +110,7 @@ void ft_word_token(t_data *data, t_types type)
 			break ;
 		(data->current)++; 
 	}
-	if (!(quote_flag % 2))
+	if (!(quote_flag % 2) && quote_flag != 0)
 		quote_removal_copy(string, data, token, node, quote_flag);
 	else
 	{
