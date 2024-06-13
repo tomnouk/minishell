@@ -281,6 +281,81 @@ static void define_type(char *args, int cur, t_types *type)
 		*type = WORD;
 }
 
+void redirect_meta(t_data *data, t_list *node, t_tkn_data *token)
+{
+	if (data->args[data->current] == '>')
+	{
+		data->current++;
+		if (data->args[data->current] == '>')
+			(data->current)++;	
+	}
+	else if (data->args[data->current] == '<')
+	{
+		data->current++;
+		if (data->args[data->current] == '<')
+			(data->current)++;
+	}
+	else 
+		(data->current)++;
+	token->token = ft_substrr(data->args, data->start, data->current - data->start);
+	node->content = token;
+	node->next = NULL;
+	ft_lstadd_back(&data->tokens, node);
+	if (data->args[data->current] == '\n')
+		(data->current)++;
+}
+
+void pipe_meta(t_data *data, t_list *node, t_tkn_data *token)
+{
+	(data->current)++;
+	token->token = ft_substrr(data->args, data->start, data->current - data->start);
+	node->content = token;
+	node->next = NULL;
+	ft_lstadd_back(&data->tokens, node);
+	if (data->args[data->current] == '\n')
+		(data->current)++;
+}
+
+//$ sign can be followed by alpha and _
+// number 0 to 9
+// ? sign
+// else take only $ sign
+void dollar_meta(t_data *data, t_list *node, t_tkn_data *token)
+{
+	(data->current)++;
+	if (ft_isalpha(data->args[data->current]))
+		while ((ft_isalpha(data->args[data->current]) || data->args[data->current] == '_'))
+			(data->current)++;
+	else if (ft_isdigit(data->args[data->current]) || data->args[data->current] == '?')
+		(data->current)++;
+	token->token = ft_substrr(data->args, data->start, data->current - data->start);
+	node->content = token;
+	node->next = NULL;
+	ft_lstadd_back(&data->tokens, node);
+	if (data->args[data->current] == '\n')
+		(data->current)++;
+}
+
+static void dollar_token_handler(t_data *data, t_list *node, t_tkn_data *token)
+{
+	if (data->args[data->current] == '$')
+		dollar_meta(data, node, token);
+	else if (data->args[data->current] == '|')
+		pipe_meta(data, node, token);
+	else if (data->args[data->current] == '>' || data->args[data->current] == '<')
+		redirect_meta(data, node, token);
+}
+
+void ft_meta_token(t_data *data, t_types type)
+{
+	t_list *node;
+	t_tkn_data *token;
+
+	memory_allocator((void **)&node, sizeof(t_list));
+	memory_allocator((void **)&token, sizeof(t_tkn_data));
+	dollar_token_handler(data, node, token);
+}
+
 void ft_tokenizing(t_data *data)
 {
 	int current;
@@ -298,6 +373,8 @@ void ft_tokenizing(t_data *data)
 		define_type(data->args, current, &type);
 		if (type == WORD)
 			ft_word_token(data, &start, &current, type);
+		else if (type == META)
+			ft_meta_token(data, type);
 	}
 }
 

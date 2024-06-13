@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/12 19:26:48 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/13 16:42:00 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 static void copy_assign(char *string, t_data *data, t_tkn_data *token, t_list *node)
 {
-	
-	string = ft_substr(data->args, data->start, data->current - data->start);
 	token->token = string;
 	node->content = token;
 	node->next = NULL;
@@ -58,13 +56,13 @@ static void quote_removal_copy(char *string, t_data *data, t_tkn_data *token, t_
 		else if (data->args[data->start + i] == '\'')
 			ft_copier(&i, '\'', string, data, &quote_flag);
 		else
-			string[i++] = data->args[data->start + i];
+		{
+			string[i] = data->args[data->start + i];
+			i++;
+		}
 	}
 	string[i] = '\0';
-	token->token = string;
-	node->content = token;
-	node->next = NULL;
-	ft_lstadd_back(&data->tokens, node);
+	copy_assign(string, data, token, node);
 }
 
 int static ft_checker(t_data *data, int *quote_flag)
@@ -75,21 +73,21 @@ int static ft_checker(t_data *data, int *quote_flag)
 		return (1);
 	else if (data->args[data->current] == '\"')
 	{
-		*quote_flag++;
+		(*quote_flag)++;
 		(data->current)++;
 		while (data->args[data->current] != '\"' && data->args[data->current] != '\n')
 			(data->current)++;
 		if (data->args[data->current] == '\"')
-			*quote_flag++;
+			(*quote_flag)++;
 	}
 	else if (data->args[data->current] == '\'')
 	{
-		*quote_flag++;
+		(*quote_flag)++;
 		(data->current)++;
 		while (data->args[data->current] != '\'' && data->args[data->current] != '\n')
 			(data->current)++;
 		if (data->args[data->current] == '\'')
-			*quote_flag++;
+			(*quote_flag)++;
 	}
 	return (0);
 }
@@ -105,6 +103,7 @@ void ft_word_token(t_data *data, t_types type)
 	memory_allocator((void **)&token, sizeof(t_tkn_data));
 	quote_flag = 0;
 	token->type = type;
+	string = NULL;
 	while (data->args[data->current] && data->args[data->current] != '\n')
 	{
 		if (ft_checker(data, &quote_flag))
@@ -114,7 +113,10 @@ void ft_word_token(t_data *data, t_types type)
 	if (!(quote_flag % 2))
 		quote_removal_copy(string, data, token, node, quote_flag);
 	else
+	{
+		string = ft_substr(data->args, data->start, data->current - data->start);
 		copy_assign(string, data, token, node);;
+	}
 	if (data->current == '\n')
 		(data->current)++;
 }
