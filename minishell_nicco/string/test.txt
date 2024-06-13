@@ -1,0 +1,149 @@
+# include <stdio.h>
+# include <stdlib.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <fcntl.h>
+# include <unistd.h>
+
+typedef struct env_var
+{
+    char *name;
+    char *value;
+    struct env_var *next;
+} t_env_var;
+
+char *copy_string(char *dest, const char *src, size_t n)
+{
+    size_t j = 0;
+
+    while (j < n && src[j] != '\0')
+    {
+        dest[j] = src[j];
+        j++;
+    }
+    dest[j] = '\0';
+    return dest;
+}
+
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+int	ft_isalnum(int c)
+{
+	int	n;
+
+	n = 1;
+	if ((c > 'z' || c < 'a') && (c > 'Z' || c < 'A') && (c > '9' || c < '0'))
+	{
+		n = 0;
+	}
+	return (n);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i] == s2[i] && (s1[i] != '\0') && (s2[i] != '\0'))
+	{
+		i++;
+	}
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+int search_env_var(const char *s, t_env_var *env)
+{
+    int i;
+    char *c;
+    int z;
+
+    i = 0;
+    while (ft_isalnum(s[i]) == 1)
+    {
+        i++;
+    }
+    c = (char *)malloc((i + 1) * sizeof(char));
+    if (c == NULL)
+        return(0);
+    copy_string(c, s, i);
+    while (env != NULL)
+    {
+        write(1,"c:",2);
+        write(1,c,ft_strlen(c));
+        write(1,"\n",1);
+        write(1,"env:",4);
+        write(1,env->name,ft_strlen(env->name));
+        write(1,"\n",1);
+        if (ft_strcmp(c, env->name) == 0)
+        {
+            z = ft_strlen(env->value) - ft_strlen(c);
+            free(c);
+            return(z);
+        }
+        env = env->next;
+    }
+    //write(1,"qui",3);
+    return(0);
+}
+
+int count_env_var(const char *s, int j, t_env_var *env)
+{
+    int i;
+    int k;
+    int z;
+
+    i = j;
+    k = 0;
+    z = 0;
+    while (s[i] != 34)
+    {
+        if (s[i] == 36)
+        {
+            i++;
+            k = z;
+            z = z + search_env_var(s + i, env);
+            if (k == z)
+                return(z);
+            while (ft_isalnum(s[i]) == 1)
+            {
+                i++;
+            }
+        }
+        i++;
+    }
+    return(z);
+}
+
+int main()
+{
+    const char *testString = "Hello $world, this is a $test string with $variables.";
+    t_env_var env1;
+    t_env_var env2;
+    t_env_var env3;
+
+    env1.name = "world";
+    env1.value = "pp";
+    env1.next = &env2;
+    
+    env2.name = "test";
+    env2.value = "wwwwwwwwww";
+    env2.next = &env3;
+    
+    env3.name = "babbo";
+    env3.value = "zzz";
+    env3.next = NULL;
+    int count = count_env_var(testString, 0, &env1);
+    printf("The count of environment variables is: %d\n", count);
+
+    return 0;
+}
