@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/14 00:01:54 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/14 18:55:40 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int main ()
 	data.tokens = NULL;
 	printf("You entered: %s\n", data.args);
 	ft_tokenizing(&data);
+	//ft_parsing(&data);
 	printTokens(data.tokens);
 }

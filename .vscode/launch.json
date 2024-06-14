@@ -1,0 +1,16 @@
+{
+	"configurations": [
+	{
+		"name": "(gdb) Launch",
+		"type": "cppdbg",
+		"request": "launch",
+		"program": "${workspaceFolder}/minishell",
+		"args": [],
+		"stopAtEntry": false,
+		"cwd": "${fileDirname}",
+		"environment": [],
+		"externalConsole": false,
+		"MIMode": "gdb",
+	}
+	]
+}

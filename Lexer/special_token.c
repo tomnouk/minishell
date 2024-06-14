@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:38:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/14 00:46:27 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/14 18:53:40 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,4 @@ void ft_special_token(t_data *data, t_types type)
 	token->type = type;
 	special_token_handler(data, node, token);
 	(data->current)++;
-	if (data->args[data->current] == '\n')
-		(data->current)++;
 }

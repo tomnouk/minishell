@@ -6,7 +6,7 @@
 #    By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 20:49:57 by aeid              #+#    #+#              #
-#    Updated: 2024/06/13 16:48:13 by aeid             ###   ########.fr        #
+#    Updated: 2024/06/14 18:04:02 by aeid             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,11 @@ L_SRC = lexer.c word_token.c utils.c meta_token.c special_token.c \
 L_DIR = Lexer/
 L_PATH = $(addprefix $(L_DIR), $(L_SRC))
 L_OBJ = $(L_PATH:.c=.o)
+
+# P_SRC = parsing.c
+# P_DIR = parsing/
+# P_PATH = $(addprefix $(P_DIR), $(P_SRC))
+# P_OBJ = $(P_PATH:.c=.o)
 
 %.o: %.c $(H_PATH) Makefile
 	@$(CC) $(CFLAGS) -c $< -o $@

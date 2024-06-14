@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/13 18:26:08 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/14 19:11:27 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void define_type(char *args, int cur, t_types *type)
 		*type = SPECIAL_SQUOTE;
 	else if (args[cur] == '\"')
 		*type = SPECIAL_DQUOTE;
-	else if (ft_ismeta(args[cur]))
+	else if (ft_ismeta(args[cur], 1))
 		*type = META;
 	else
 		*type = WORD;

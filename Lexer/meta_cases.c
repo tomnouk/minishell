@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:13:57 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/13 16:46:31 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/14 18:53:10 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void redirect_meta(t_data *data, t_list *node, t_tkn_data *token)
 	node->content = token;
 	node->next = NULL;
 	ft_lstadd_back(&data->tokens, node);
-	if (data->args[data->current] == '\n')
-		(data->current)++;
 }
 
 void pipe_meta(t_data *data, t_list *node, t_tkn_data *token)
@@ -43,8 +41,6 @@ void pipe_meta(t_data *data, t_list *node, t_tkn_data *token)
 	node->content = token;
 	node->next = NULL;
 	ft_lstadd_back(&data->tokens, node);
-	if (data->args[data->current] == '\n')
-		(data->current)++;
 }
 
 //$ sign can be followed by alpha and _
@@ -63,6 +59,4 @@ void dollar_meta(t_data *data, t_list *node, t_tkn_data *token)
 	node->content = token;
 	node->next = NULL;
 	ft_lstadd_back(&data->tokens, node);
-	if (data->args[data->current] == '\n')
-		(data->current)++;
 }

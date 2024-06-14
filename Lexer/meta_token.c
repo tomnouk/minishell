@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 20:15:14 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/13 16:43:02 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/14 18:59:02 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void ft_meta_token(t_data *data, t_types type)
 	memory_allocator((void **)&token, sizeof(t_tkn_data));
 	token->type = type;
 	dollar_token_handler(data, node, token);
+	(data->current)--;
 }
 
 /*

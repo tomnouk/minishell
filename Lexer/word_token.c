@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/14 00:24:38 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/14 19:18:08 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void quote_removal_copy(char *string, t_data *data, t_tkn_data *token, t_list *n
 	while (i < len && quote_flag != 0)
 	{
 		if (data->args[data->start + i] == '\"')
-		{
 			ft_copier(&i, '\"', string, data, &quote_flag);
-			token->type = WORD_WITH_DQUOTE_INSIDE;
-		}
 		else if (data->args[data->start + i] == '\'')
+		{
 			ft_copier(&i, '\'', string, data, &quote_flag);
+			token->type = WORD_WITH_SQUOTE_INSIDE;
+		}
 		else
 		{
 			string[i] = data->args[data->start + i];
@@ -69,7 +69,7 @@ int static ft_checker(t_data *data, int *quote_flag)
 {
 	if (!ft_isprint(data->args[data->current]) && !(*quote_flag % 2))
 		return (1);
-	else if (ft_ismeta(data->args[data->current]) && !(*quote_flag % 2))
+	else if (ft_ismeta(data->args[data->current], 0) && !(*quote_flag % 2))
 		return (1);
 	else if (data->args[data->current] == '\"')
 	{
@@ -117,7 +117,6 @@ void ft_word_token(t_data *data, t_types type)
 		string = ft_substr(data->args, data->start, data->current - data->start);
 		copy_assign(string, data, token, node);;
 	}
-	if (data->current == '\n')
-		(data->current)++;
+	(data->current)--;
 }
 
