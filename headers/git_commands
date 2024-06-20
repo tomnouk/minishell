@@ -1,8 +1,0 @@
-Quando si finisce il lavoro
-git checkout main
-git add.
-git commit
-git push
-
-Quando iniziamo(per copiare le modifiche)
-git pulls
