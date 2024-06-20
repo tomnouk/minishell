@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/14 19:11:27 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 16:58:04 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,24 @@ static void define_type(char *args, int cur, t_types *type)
 		*type = SPECIAL_SQUOTE;
 	else if (args[cur] == '\"')
 		*type = SPECIAL_DQUOTE;
-	else if (ft_ismeta(args[cur], 1))
-		*type = META;
+	else if (args[cur] == '$')
+		*type = META_DOL;
+	else if (args[cur] == '|')
+		*type = META_PIPE;
+	else if (args[cur] == '>')
+		{
+			if (args[cur + 1] == '>')
+				*type = META_APPEND;
+			else
+				*type = META_REDIR_OUT;
+		}
+	else if (args[cur] == '<')
+		{
+			if (args[cur + 1] == '<')
+				*type = META_HEREDOC;
+			else
+				*type = META_REDIR_IN;
+		}
 	else
 		*type = WORD;
 }
@@ -60,9 +76,9 @@ void ft_tokenizing(t_data *data)
 		define_type(data->args, data->current, &type);
 		if (type == SPECIAL_SQUOTE || type == SPECIAL_DQUOTE)
 			ft_special_token(data, type);
-		else if (type == META)
-			ft_meta_token(data, type);
+		else if (type == WORD)
+			ft_word_token(data, type);	
 		else
-			ft_word_token(data, type);
+			ft_meta_token(data, type);
 	}
 }

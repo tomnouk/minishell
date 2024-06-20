@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/14 19:18:08 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 16:54:26 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int static ft_checker(t_data *data, int *quote_flag)
 {
 	if (!ft_isprint(data->args[data->current]) && !(*quote_flag % 2))
 		return (1);
-	else if (ft_ismeta(data->args[data->current], 0) && !(*quote_flag % 2))
+	else if (ft_ismeta(data->args[data->current]) && !(*quote_flag % 2))
 		return (1);
 	else if (data->args[data->current] == '\"')
 	{
