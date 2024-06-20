@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 18:54:22 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 19:38:30 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int static ft_checker(t_data *data, int *quote_flag)
 	{
 		(*quote_flag)++;
 		(data->current)++;
-		while (data->args[data->current] != '\"' && data->args[data->current] != '\n')
+		while (data->args[data->current] != '\"')
 			(data->current)++;
 		if (data->args[data->current] == '\"')
 			(*quote_flag)++;
@@ -84,7 +84,7 @@ int static ft_checker(t_data *data, int *quote_flag)
 	{
 		(*quote_flag)++;
 		(data->current)++;
-		while (data->args[data->current] != '\'' && data->args[data->current] != '\n')
+		while (data->args[data->current] != '\'')
 			(data->current)++;
 		if (data->args[data->current] == '\'')
 			(*quote_flag)++;
