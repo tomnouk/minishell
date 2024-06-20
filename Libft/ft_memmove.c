@@ -3,51 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 14:45:30 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/11 15:04:51 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/11 15:03:51 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/11 15:03:53 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdio.h>
+#include <string.h>
+#include <limits.h>
 #include "libft.h"
-
-//#include <stdio.h>//
-//#include <string.h>//
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	void	*ptr;
+	unsigned char		*d;
+	const unsigned char	*s;
+	size_t				i;
 
-	ptr = dest;
-	if (!dest && !src)
-		return (dest);
-	if (dest == src)
-		return (dest);
-	if (src < dest)
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	i = 0;
+	if (!src && !dest)
+		return (NULL);
+	if (d > s)
 	{
-		while (n--)
-			((char *)dest)[n] = ((char *)src)[n];
+		while (n-- > 0)
+			d[n] = s[n];
 	}
 	else
 	{
-		while (n--)
+		while (i < n)
 		{
-			*(char *)dest++ = *(char *)src++;
+			d[i] = s[i];
+			i++;
 		}
 	}
-	return (ptr);
+	return (dest);
 }
+/*
+int main() {
+    char source[5];
+    char destination[20];
+    char source_1[5];
+    char destination_1[20];
 
-/*int main () 
-{
-   char dest[] = "oldstring";
-   const char src[]  = "newstrig";
-
-   printf("Before memmove dest = %s, src = %s\n", dest, src);
-   //memmove(dest, src, 9);//
-   ft_memmove (dest, src, 9);
-   printf("After memmove dest = %s, src = %s\n", dest, src);
-
-   return(0);
+    // Copy the data from source to destination
+    ft_memmove(destination, source, 20);
+    printf("f_Copied string: %s\n", destination);
+    
+    memmove(destination_1, source_1, 20);
+	printf("  Copied string: %s\n", destination);
+	
+    return 0;
 }*/

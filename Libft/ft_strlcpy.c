@@ -3,46 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:43:31 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/10 16:43:33 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/11 16:39:50 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/11 16:39:53 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <bsd/string.h>
+#include <stdlib.h>
 #include "libft.h"
 
-//#include <stdio.h>//
-//#include <string.h>//
-
-size_t	ft_strlcpy(char *dest, const char *src, size_t len)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	j = 0;
-	while (src[i] != '\0')
-		i++;
-	if (len == 0)
-		return (i);
-	while ((j < (len - 1)) && src[j] != '\0')
+	if (size > 0)
 	{
-		dest[j] = src[j];
-		j++;
+		while (src[i] && (i < size - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	dest[j] = '\0';
-	return (i);
+	return (ft_strlen(src));
 }
 
-/*int main ()
-{
-    char src[] = "Hello";
-    char dest[50];
-
-    strlcpy(dest, src, 0);
-    printf("%s\n", dest);
-
-    ft_strlcpy(dest, src, 0);
-    printf("%s\n", dest);
-}*/
+/*int main() {
+    char dst1[10] = "hello";
+    printf("Before: %s\n", dst1);
+    ft_strlcpy(dst1, "world", sizeof(dst1));
+    printf("After: %s\n", dst1);
+    
+    char dst2[10] = "hello";
+    printf("\nBefore: %s\n", dst2);
+    ft_strlcpy(dst2, "worldworld", sizeof(dst2));
+    printf("After: %s\n", dst2);
+    
+    char dst3[10] = "hello";
+    printf("\nBefore: %s\n", dst3);
+    ft_strlcpy(dst3, "world", 0);
+    printf("After: %s\n", dst3);
+    
+    char dst4[10] = "hello";
+    printf("\nBefore: %s\n", dst4);
+    ft_strlcpy(dst4, "", sizeof(dst4));
+    printf("After: %s\n", dst4);
+    
+    return 0;
+}
+*/

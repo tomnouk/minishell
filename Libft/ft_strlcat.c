@@ -3,52 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:43:21 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/10 18:20:28 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/12 17:59:27 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/12 17:59:29 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+#include <stdio.h>
+#include <bsd/string.h>
+#include <unistd.h>
 #include "libft.h"
 
-//#include <stdio.h>//
-//#include <string.h>//
-
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+/*size_t	ft_strlen(const char *s)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	res_d;
-	unsigned int	res_s;
+	size_t	i;
 
-	i = ft_strlen(dest);
-	res_d = ft_strlen(dest);
-	res_s = ft_strlen(src);
-	j = 0;
-	if (size <= 0)
-		return (res_s + size);
-	while (src[j] != '\0' && i < (size - 1))
-	{
-		dest[i] = src[j];
+	i = 0;
+	while (s[i])
 		i++;
-		j++;
-	}
-	dest[i] = '\0';
-	if (size < res_d)
-		return (res_s + size);
-	else
-		return (res_d + res_s);
-}
-
-/*int main ()
+	return (i);
+}*/
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-    char src[] = "World";
-    char dest[20] = "Hello";
+	size_t	len_d;
+	size_t	dst_i;
+	size_t	i;
 
-    strlcat(dest, src, 20);
-    printf("%s\n", dest);
-    ft_strlcat(dest, src, 20);
-    printf("%s\n", dest);
-    return (0);
+	len_d = ft_strlen(dst);
+	dst_i = len_d;
+	i = 0;
+	if (size < ft_strlen(dst))
+		return (ft_strlen(src) + size);
+	if (size > 0)
+	{
+		while (len_d < (size - 1) && src[i])
+		{
+			dst[len_d] = src[i];
+			len_d++;
+			i++;
+		}
+		dst[len_d] = '\0';
+	}
+	return (ft_strlen(src) + dst_i);
+}
+/*
+int	main()
+{
+	char d[] = "123";
+	char f_d[] = "123";
+	size_t size = 0;
+	
+	//printf(" ->%zu, ", strlcat(d,"1234567", size));
+	printf("%s\n", d);
+	printf("f->%zu, ", ft_strlcat(f_d,"1234567", size));
+	printf("%s\n", f_d);
+	
+	
 }*/

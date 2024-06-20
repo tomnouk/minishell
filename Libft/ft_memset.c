@@ -3,42 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 14:45:48 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/10 14:46:14 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/09 16:18:35 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/09 16:18:38 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
+#include <stdio.h>
+//#include <string.h>
 
-//#include <stdio.h>//
-//#include <string.h>//
-
-void	*ft_memset(void *str, int c, size_t n)
+void	*ft_memset(void *s, int c, size_t n)
 {
 	size_t			i;
-	unsigned char	*b;
-	unsigned char	value;
+	unsigned char	uc;
 
 	i = 0;
-	b = (unsigned char *)str;
-	value = (unsigned char)c;
+	uc = (unsigned char)c;
 	while (i < n)
 	{
-		b[i] = value;
+		((unsigned char *)s)[i] = uc;
 		i++;
 	}
-	return (str);
+	return (s);
 }
-
-/*int main()
+/*
+int main() 
 {
-    char str[7];
-    ft_memset(str, 'a', 5);
-    //memset(str, 'A', 5);//
+    int myArray[5];
+    int i = 0;
+
+    ft_memset(myArray, 300, 3); 
     
-    for (int i = 0; i < 5; i++)
-        printf("%c", str[i]);
-    printf("\n");
+    // Print the values in the array
+    while (i < 3)
+    {
+        printf("myArray[%d] = %c\n", i, myArray[i]);
+        i++;
+    }
+}        
+   char myString[5];
+
+    // Initialize the entire array to the value 42
+    ft_memset(myString, 300, 3);
+	//puts(myArray);
+    // Print the values in the array
+    for (int i = 0; i < 3; i++)
+        printf("myString[%d] = %c\n", i, myString[i]);
+
+    return 0;
 }*/

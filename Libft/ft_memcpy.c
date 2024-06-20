@@ -3,39 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 14:45:14 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/11 15:04:07 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/11 10:54:14 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/11 10:54:16 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <string.h>
 #include "libft.h"
-
-//#include <stdio.h>//
-//#include <string.h>//
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	void	*ptr;
+	size_t		i;
 
-	ptr = dest;
-	while (!dest && !src)
-		return (dest);
-	while (n--)
-		*(char *)dest++ = *(char *)src++;
-	return (ptr);
+	i = 0;
+	if (!src && !dest)
+		return (NULL);
+	while (i < n)
+	{
+		((unsigned char *)dest)[i] = ((const unsigned char *)src)[i];
+		i++;
+	}
+	return (dest);
 }
+/*
+int main() {
+    char source[] = "";
+    char destination[20];
+    char source_1[] = "";
+    char destination_1[20];
 
-/*int main()
-{
-    char src[] = "fuck";
-    char dest[];
-    strcpy(dest, "shit shit shit");
-    printf("The string before: %s\n", dest);
-    memcpy (dest, src, strlen(src) + 1);
-    //ft_memcpy (dest, src, strlen(src) + 1);//
-    printf("The string after: %s\n", dest);
-
-    return (0);
+    // Copy the data from source to destination
+    ft_memcpy(destination, source, 20);
+    printf("f_Copied string: %s\n", destination);
+    
+    memcpy(destination_1, source_1, 20);
+	printf("  Copied string: %s\n", destination);
+	
+    return 0;
 }*/

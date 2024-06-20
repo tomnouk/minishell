@@ -3,58 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:43:06 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/13 14:44:13 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/20 10:25:19 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/20 10:25:21 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
-
-//#include <stdio.h>//
-//#include <stdlib.h>//
-//#include <string.h>//
-
-char	*ft_strjoin(const char *s1, const char *s2)
+/*
+size_t	ft_strlen(const char *s)
 {
-	size_t	l;
-	size_t	m;
-	char	*p;
-	char	*str_ptr;
+	size_t	i;
 
-	l = 0;
-	m = 0;
-	p = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (p == NULL)
-		return (NULL);
-	str_ptr = p;
-	while (s1[m] != '\0')
-	{
-		p[m] = s1[m];
-		m++;
-	}
-	while (s2[l] != '\0')
-	{
-		p[m + l] = s2[l];
-		l++;
-	}
-	p[m + l] = '\0';
-	return (str_ptr);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
-
-/*int main()
+*/
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    char s1[] = "Fucking";
-    char s2[] = " shit";
-    char *p;
+	char	*strjoin;
+	size_t	len_s1;
+	size_t	len_s2;
+	char	*original_start;
 
-    p = ft_strjoin(s1, s2);
-    if (p == NULL)
-    {
-        printf("NULL");
-        free(p);
-    }
-    else
-        printf("%s\n", p);
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	strjoin = malloc((len_s1 + len_s2 + 1) * sizeof(char));
+	if (!strjoin)
+		return (NULL);
+	original_start = strjoin;
+	while (len_s1--)
+		*strjoin++ = *s1++;
+	while (len_s2--)
+		*strjoin++ = *s2++;
+	*strjoin = '\0';
+	return (original_start);
+}
+/*
+int	main()
+{
+	puts(ft_strjoin("12345", "678"));
 }*/

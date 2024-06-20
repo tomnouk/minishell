@@ -3,48 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 14:44:57 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/11 15:07:06 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/18 10:53:41 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/18 10:53:43 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <string.h>
 #include "libft.h"
-
-//#include <stdio.h>//
-//#include <string.h>//
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	while (n--)
-	{
-		if (*(unsigned char *)s1 != *(unsigned char *)s2)
-			return (*(unsigned char *)s1 - *(unsigned char *)s2);
-		s1 = (unsigned char *)s1 + 1;
-		s2 = (unsigned char *)s2 + 1;
-	}
-	return (0);
+	size_t				i;
+	unsigned char		*r1;
+	unsigned char		*r2;
+
+	i = 0;
+	r1 = (unsigned char *)s1;
+	r2 = (unsigned char *)s2;
+	while (i < n && r1[i] == r2[i])
+		i++;
+	if (i == n || n == 0)
+		return (0);
+	return (r1[i] - r2[i]);
 }
-
-/*int main()
+/*
+int main()
 {
-    char str1[] = "Hello";
-    char str2[] = "Hell";
-    int i;
-
-    i = ft_memcmp(str1, str2, 6);
-    if (i > 0)
-        printf("str1 bigger\n");
-    else if (i < 0)
-        printf("str1 smaller\n");
-    else
-        printf("Equal\n");
-    i = memcmp(str1, str2, 6);
-    if (i > 0)
-        printf("str1 bigger\n");
-    else if (i < 0)
-        printf("str1 smaller\n");
-    else
-        printf("Equal\n");
+	
+	printf("ft %d\n", ft_memcmp("a2", "a2", 3));
+	printf("   %d\n", memcmp("a2", "a2", 3));
 }*/

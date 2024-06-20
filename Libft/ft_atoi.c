@@ -3,46 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 13:08:48 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/10 14:16:49 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/18 15:51:16 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/18 15:51:19 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	parity;
 	int	result;
+	int	i;
+	int	negativo;
 
-	i = 0;
-	parity = 1;
 	result = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+	i = 0;
+	negativo = 1;
+	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (nptr[i] == '-')
 	{
-		if (str[i] == '-')
-			parity *= -1;
+		i++;
+		negativo = -1;
+	}
+	else if (nptr[i] == '+')
+		i++;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		result = result * 10 + (nptr[i] - 48);
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = (result * 10) + (str[i] - 48);
-		i++;
-	}
-	return (result * parity);
+	return (result * negativo);
 }
+/*
+int main() {
+    const char *str = "   -2147483650noaa3";
 
-/*int main (void)
-{
-    char s[] = " -+95";
-
-    int result = atoi(s);
-    printf("%d\n", result);
-    result = ft_atoi(s);
-    printf("%d\n", result);
+    printf("   %d\n", atoi(str));
+    printf("ft_%d\n", ft_atoi(str));
+    return (0);
 }*/

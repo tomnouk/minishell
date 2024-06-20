@@ -3,75 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:53:57 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/11 16:30:15 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/19 13:47:46 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/19 13:47:48 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
-
-//#include <stdio.h>//
-//#include <string.h>//
-//#include <stdlib.h>//
-//s = (s + start);move the s pointer to the index to create substr from there//
-//	p = str;assign str to p so we keep track of the begining of substr//
-static size_t	str_len(const char *str)
+/*
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (*(str + i))
+	while (s[i])
 		i++;
 	return (i);
 }
 
-static char	*newstring(size_t n)
+char	*ft_strdup(const char *s)
 {
-	char	*p;
-
-	p = (char *)malloc(sizeof(char) * (n + 1));
-	if (p == NULL)
+	char	*ptr;
+	size_t	len_s;
+	
+	len_s = ft_strlen(s);
+	ptr = malloc((len_s + 1) * sizeof(char));
+	if(!ptr)
 		return (NULL);
-	return (p);
+	ft_memcpy(ptr, s, len_s);
+	ptr[len_s] = '\0';
+	return (ptr);	
 }
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	char	*str;
-	char	*p;
+	size_t	i;
 
-	if (s == NULL)
-		return (NULL);
-	if (start > str_len(s))
-		len = 0;
-	else if (len > (str_len(s) - start))
-		len = str_len(s) - start;
-	str = newstring(len);
-	if (!str)
-		return (NULL);
-	s += start;
-	p = str;
-	*(str + len) = '\0';
-	while (len-- && *s)
-		*str++ = *s++;
-	return (p);
-}
-
-/*int	main(void)
-{
-	char	s[];
-	char	*p;
-
-	s[] = "hola";
-	p = ft_substr(s, 4294967295, 0);
-	if (p == NULL)
+	i = 0;
+	if (size > 0)
 	{
-		printf("it is NULL\n");
-		free(p);
+		while (src[i] && (i < size - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	else
-		printf("%s\n", p);
-	return (0);
+	return (ft_strlen(src));
+}
+*/
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*substr;
+	size_t	s_len;
+
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		return (ft_strdup(""));
+	if (len > s_len - start)
+		len = s_len - start;
+	substr = malloc((len + 1) * sizeof(char));
+	if (!substr)
+		return (NULL);
+	ft_strlcpy(substr, &s[start], len + 1);
+	return (substr);
+}
+/*
+int main()
+{
+	char *substr = ft_substr("012345", 3, 6);
+	free(substr);
 }*/

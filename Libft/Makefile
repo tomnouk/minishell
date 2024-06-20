@@ -3,43 +3,50 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+         #
+#    By: rpaic <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/11/09 10:58:00 by aeid              #+#    #+#              #
-#    Updated: 2024/06/11 19:14:49 by aeid             ###   ########.fr        #
+#    Created: 2023/10/25 16:46:45 by rpaic             #+#    #+#              #
+#    Updated: 2023/10/25 16:46:48 by rpaic            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-SOURCES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
-	  ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c \
-	  ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c \
-	  ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c ft_split.c \
-	  ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
-	  ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
-	  ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
-	  ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c \
-	  ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
-OBJS = $(SOURCES:.c=.o)
 
-COMPILER = cc
-CFLAGS = -Wall -Werror -Wextra
-RM = rm -f
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
+SRC = $(filter-out %_bonus.c,$(foreach D, . ,$(wildcard $(D)/*.c)))
+
+BONUS_SRC = $(foreach D, . , $(wildcard $(D)/*_bonus.c))
+OBJ = $(SRC:.c=.o)
+
+BONUS_OBJ = $(BONUS_SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJ) $(BONUS_OBJ)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "LIBFT compliled with succes"
 
-%.o: %.c
-	$(COMPILER) -c $(CFLAGS) $?
+bonus:	$(BONUS_OBJ)
+	@ar rc $(NAME) $(BONUS_OBJ)
+	@ranlib $(NAME)
+	@echo "LIBFT compliled with BONUS succes"
 
+%.o: %.c libft.h
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+test: libft.a
+	@$(CC) $(CFLAGS) $(p) -L. -lft -lbsd
 clean:
-	$(RM) $(OBJS)
-
+	@rm -f $(OBJ) $(BONUS_OBJ)
+	@echo "Obj file removed."
+	
 fclean: clean
-	$(RM) $(NAME)
+	@rm -f $(NAME)
+	@echo "Libreria rimossa."
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re bonus

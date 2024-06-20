@@ -3,88 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 14:20:59 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/11 00:24:04 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/26 10:36:56 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/26 10:36:58 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "libft.h"
 
-//#include <stdio.h>//
-//#include <stdlib.h>//
-
-static int	the_length(int i)
+int	negative(long n)
 {
-	int	len;
-
-	len = 0;
-	if (i <= 0)
-		len++;
-	while (i != 0)
-	{
-		i = (i / 10);
-		len++;
-	}
-	return (len);
-}
-
-static long long	longnumbers(long long n)
-{
-	long long	nb;
-
-	nb = 1;
 	if (n < 0)
-		nb *= -n;
-	else
-		nb *= n;
-	return (nb);
+		return (1);
+	return (0);
 }
 
-static char	*newstr(size_t n)
+int	size_n(int n)
 {
-	char	*p;
+	int	size;
 
-	p = (char *)malloc(sizeof(char) * (n + 1));
-	if (!p)
-		return (NULL);
-	return (p);
-}
-
-char	*ft_itoa(int i)
-{
-	int				len;
-	int				sign;
-	unsigned int	nbr;
-	char			*str;
-
-	sign = 0;
-	if (i < 0)
-		sign = 1;
-	len = the_length(i);
-	str = newstr(len);
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	nbr = longnumbers(i);
-	while (len > 0)
+	size = 0;
+	if (n == 0)
+		return (1);
+	while (n)
 	{
-		str[len - 1] = '0' + (nbr % 10);
-		nbr = nbr / 10;
-		len--;
+		n /= 10;
+		size++;
 	}
-	if (sign)
-		*(str) = '-';
-	return (str);
+	return (size);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*res;
+	int		str_size;
+	int		i;
+	long	nr;
+
+	i = 0;
+	nr = n;
+	str_size = size_n(n) + negative(n);
+	res = malloc(sizeof(char) * str_size + 1);
+	if (!res)
+		return (NULL);
+	res[str_size] = '\0';
+	str_size--;
+	if (negative(n))
+	{
+		nr = -nr;
+		res[i++] = '-';
+	}
+	while (i <= str_size)
+	{
+		res[str_size--] = nr % 10 + '0';
+		nr = nr / 10;
+	}
+	return (res);
 }
 /*
-int	main(void)
+int	main()
 {
-    int i = 0;
-    char *str;
-
-    str = ft_itoa(i);
-    printf("%s\n", str);
-    return (0);
+	printf("%s\n", ft_itoa(-__INT_MAX__ - 1));
 }*/

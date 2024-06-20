@@ -3,51 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:51:57 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/11 15:16:46 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/25 18:56:07 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/25 18:56:09 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdio.h>
 #include "libft.h"
 
-//#include <stdio.h>//
-//#include <stdlib.h>//
-//#include <string.h>//
+// size_t	ft_strlen(const char *s)
+// {
+// 	size_t	i;
 
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+// 	i = 0;
+// 	while (s[i])
+// 		i++;
+// 	return (i);
+// }
+
+// char	even_upper(unsigned int i, char c)
+// {
+// 	if (i % 2 == 0)
+// 		return (c -= 32);
+// 	return (c);
+// }
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	size_t	i;
-	char	*p;
+	char	*result;
 
-	if (!s)
+	result = malloc(sizeof(char) * ft_strlen(s) + 1);
+	if (!result)
 		return (NULL);
 	i = 0;
-	p = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
-	if (p == NULL)
-		return (NULL);
-	while (s[i] != '\0')
+	while (s[i])
 	{
-		p[i] = f(i, s[i]);
+		result[i] = f(i, s[i]);
 		i++;
 	}
-	p[i] = '\0';
-	return (p);
-}
-/*
-char	f(unsigned int i, char s)
-{
-    if (s >= 'a' && s <= 'z')
-        return (s - 32);
-    else
-        return (s + 32);
+	result[i] = '\0';
+	return (result);
 }
 
-int	main(void)
-{
-    char str[] = "HellOWorlD";
-    char *p = ft_strmapi (str, f);
-    printf("%s\n", p);
-    return (0);
-}*/
+// int main ()
+// {
+// 	char *s;
+
+// 	s = "ascvkaff";
+// 	printf("%s", ft_strmapi(s, even_upper));
+// }

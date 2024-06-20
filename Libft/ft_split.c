@@ -3,123 +3,123 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 14:47:52 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/10 23:15:42 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/20 18:42:42 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/20 18:42:44 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <stdio.h>
 #include "libft.h"
-
-//#include <stdio.h>//
-//#include <stdlib.h>//
-
-static size_t	wordcount(char const *str, char c)
-{
-	size_t	wordcount;
-	size_t	i;
-
-	wordcount = 0;
-	i = 0;
-	while (*(str + i))
-	{
-		if (*(str + i) != c)
-		{
-			wordcount++;
-			while (*(str + i) && *(str + i) != c)
-				i++;
-		}
-		else if (*(str + i) == c)
-			i++;
-	}
-	return (wordcount);
-}
-
-static size_t	wordlength(char const *str, char c)
+/*
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (*(str + i) && *(str + i) != c)
+	while (s[i])
 		i++;
 	return (i);
 }
 
-static void	freeupmem(size_t i, char **str)
-{
-	while (i > 0)
-	{
-		i--;
-		free(*(str + i));
-	}
-	free(str);
-}
-
-static char	**split(char const *str, char c, char **s, size_t nowords)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	j = 0;
-	while (i < nowords)
+	if (size > 0)
 	{
-		while (*(str + j) && *(str + j) == c)
-			j++;
-		*(s + i) = ft_substr(str, j, wordlength(&*(str + j), c));
-		if (!*(s + i))
+		while (src[i] && (i < size - 1))
 		{
-			freeupmem(i, s);
-			return (NULL);
-		}
-		while (*(str + j) && *(str + j) != c)
-			j++;
-		i++;
-	}
-	*(s + i) = NULL;
-	return (s);
-}
-
-char	**ft_split(char const *str, char c)
-{
-	char	**p;
-	size_t	i;
-
-	if (!str)
-		return (NULL);
-	i = wordcount(str, c);
-	p = (char **)malloc(sizeof(char *) * (i + 1));
-	if (!p)
-		return (NULL);
-	p = split(str, c, p, i);
-	return (p);
-}
-/*
-int	main(void)
-{
-	const char	*str;
-	char		delimiter;
-	char		**words;
-	int			i;
-
-	str = ",,Hello,,World,How,Are,You,Shit,Fuck";
-	delimiter = ',';
-	words = ft_split(str, delimiter);
-	if (words != NULL)
-	{
-		i = 0;
-		while (words[i] != NULL)
-		{
-			printf("%s\n", words[i]);
-			free(words[i]);
+			dst[i] = src[i];
 			i++;
 		}
-		free(words);
+		dst[i] = '\0';
 	}
-	else
+	return (ft_strlen(src));
+}
+*/
+size_t	word_counter(char const *s, unsigned char c)
+{
+	size_t	wc;
+	int		in_word;
+	size_t	i;
+
+	wc = 0;
+	i = 0;
+	in_word = 0;
+	while (s[i])
 	{
-		printf("Invalid input or allocation failed\n");
+		if (s[i] == c)
+			in_word = 0;
+		else if (!in_word)
+		{
+			in_word = 1;
+			wc++;
+		}
+		i++;
 	}
-	return (0);
+	return (wc);
+}
+
+size_t	free_matrix(char **matrix)
+{
+	free(matrix);
+	return (1);
+}
+
+size_t	free_ptr_matrix(char **matrix, size_t idx)
+{
+	while (idx > 0)
+		free(matrix[idx--]);
+	free(matrix[idx]);
+	free(matrix);
+	return (1);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char		**matrix;
+	size_t		inizio;
+	size_t		i;
+	size_t		idx;
+
+	i = 0;
+	matrix = malloc(sizeof(char *) * (word_counter(s, (unsigned char)c) + 1));
+	if (!matrix && free_matrix(matrix))
+		return (NULL);
+	idx = 0;
+	while (s[i] && idx < word_counter(s, (unsigned char)c))
+	{
+		while (s[i] == (unsigned char)c)
+			i++;
+		inizio = i;
+		while (s[i] && s[i] != (unsigned char)c)
+			i++;
+		matrix[idx] = malloc(sizeof(char) * (i - inizio) + 1);
+		if (!matrix[idx] && free_ptr_matrix(matrix, idx))
+			return (NULL);
+		ft_strlcpy(matrix[idx++], s + inizio, (i - inizio) + 1);
+	}
+	matrix[idx] = NULL;
+	return (matrix);
+}
+/*
+int	main()
+{
+	char	**matrix;
+	char const	*s;
+	char	c;
+	
+	s = "\t\t\t\t\t\t\t\t";
+	c = '\t';
+	printf("nr of words %zu,\n", word_counter(s, c));
+	matrix = ft_split(s, c);
+	
+	for (size_t i = 0; i <= word_counter(s, c); i++)
+		printf("-> %s\n", matrix[i]);
+	free(matrix);
+	//printf("* %lu\n", sizeof(char *));
 }*/

@@ -3,49 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:41:53 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/10 16:41:58 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/13 20:18:01 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/13 20:18:03 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+#include <stdio.h>
 #include "libft.h"
-
-//#include <stdio.h>//
-//#include <string.h>//
-
-char	*ft_strchr(const char *str, int c)
+/*
+size_t	ft_strlen(const char *s)
 {
-	int				i;
-	unsigned char	value;
+	size_t	i;
 
-	value = (unsigned char)c;
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i])
+		i++;
+	return (i);
+}
+*/
+char	*ft_strchr(const char *s, int c)
+{
+	size_t	i;
+
+	i = 0;
+	if ((unsigned char)c == 0)
+		return ((char *)(s + ft_strlen(s)));
+	while (s[i])
 	{
-		if (str[i] == value)
-		{
-			return ((char *)(str + i));
-		}
+		if ((unsigned char)s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
 		i++;
 	}
-	if (value == '\0')
-		return ((char *)(str + i));
 	return (NULL);
 }
-
-/*int main()
+/*
+int main()
 {
-    char str[] = "fucking hell, omg!";
-    char ch = '\0';
-    char *t;
+	const char *s = "teste";
+	size_t	i;
 
-    t = ft_strchr(str, ch);
-    //t = strchr(str, ch);//
-    if (t == NULL)
-        printf("IT IS NULL");
-    else
-        printf("The string after %c is: %s\n", ch, t);
-    return (0);
+	i = 0;	
+	
+	while (i <= ft_strlen(s))
+	{
+		printf("s[%zu]: %p\n", i, &s[i]);
+		i++;
+	}
+	printf("ft %p\n", ft_strchr(s, 1024));
+	printf("   %p\n", strchr(s, 1024));
 }*/

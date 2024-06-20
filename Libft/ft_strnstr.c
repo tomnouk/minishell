@@ -3,54 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:52:36 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/11 16:35:07 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/18 12:47:26 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/18 12:47:28 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <string.h>
+#include <bsd/bsd.h>
 #include "libft.h"
 
-//#include <stdio.h>//
-//#include <string.h>//
-
-char	*ft_strnstr(const char *s1, const char *s2, size_t n)
+/*size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
-	if (!s1 && !n)
-		return (NULL);
-	if (!*s2)
-		return ((char *)s1);
-	while (*s1 && n--)
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+*/
+
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	big_i;
+	size_t	little_i;
+	size_t	inizio;
+
+	big_i = 0;
+	if (little[0] == 0)
+		return ((char *)big);
+	while (big[big_i] && big_i + ft_strlen(little) <= len)
 	{
-		i = 0;
-		while (*(s2 + i) && *(s1 + i) == *(s2 + i) && i <= n)
+		inizio = big_i;
+		little_i = 0;
+		while (big[inizio] == little[little_i])
 		{
-			if (!*(s2 + i + 1))
-				return ((char *)s1);
-			i++;
+			inizio++;
+			little_i++;
+			if (!little[little_i])
+				return ((char *)&big[big_i]);
 		}
-		s1++;
+		big_i++;
 	}
 	return (NULL);
 }
-
-/*int main()
+/*
+int main()
 {
-    char s1[] = "What the fuck is going on";
-    char s2[] = "fack";
-    char *p;
-
-    p = strnstr(s1, s2, 2);
-    if (p == NULL)
-        printf("could not be found\n");
-    else
-        printf("Here: %s\n", p);
-    p = ft_strnstr(s1, s2, 2);
-    if (p == NULL)
-        printf("could not be found\n");
-    else
-        printf("Here: %s\n", p);
+	char b[30] = "loripsem ipsum dolor sit amet";
+	char l[10] = "ipsum";
+	size_t	len;
+	
+	char *result;
+	len = 15;
+	result = strnstr(b, l, len);
+	printf("   %s\n", result);
+	
+//	const char *ft_b = "12345678";
+//	const char *ft_l = "123";
+	char *ft_result;
+	ft_result = ft_strnstr(b, l, len);
+	printf("ft %s\n", ft_result);
+	return(0);
 }*/

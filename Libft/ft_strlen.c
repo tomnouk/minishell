@@ -3,32 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 16:43:41 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/10 16:43:45 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/09 14:23:33 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/09 14:23:35 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <stdio.h>
 #include "libft.h"
 
-//#include <stdio.h>//
-//#include <string.h>//
-
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(const char *s)
 {
-	size_t	counter;
+	size_t	i;
 
-	counter = 0;
-	while (str[counter])
-		counter++;
-	return (counter);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
 
-/*int main()
+/*int	main(void)
 {
-    //int i = ft_strlen ("hello");//
-    int i = strlen("Hello");
-    printf("the length of the array is %i", i);
-    return (0);
+	printf("L = %zu\n", ft_strlen("123Aa@7?"));
 }*/

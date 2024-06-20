@@ -3,38 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/10 14:44:28 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/11 00:38:04 by aeid             ###   ########.fr       */
+/*   Created: 2023/10/17 14:12:46 by rpaic             #+#    #+#             */
+/*   Updated: 2023/10/17 14:12:48 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <string.h>
 #include "libft.h"
-
-//#include <stdio.h>//
-//#include <string.h>//
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	while (n--)
+	size_t				i;
+	unsigned char		*r;
+
+	r = (unsigned char *)s;
+	i = 0;
+	while (i < n)
 	{
-		if (*(unsigned char *)s++ == (unsigned char)c)
-			return ((void *)(unsigned char *)s - 1);
+		if (r[i] == (unsigned char)c)
+			return (&r[i]);
+		i++;
 	}
-	return (NULL);
+	return (0);
 }
-
-/*int main()
+/*
+int	main()
 {
-    char s[] = "What the, fuck";
-    char ch = 'z';
-    char *p;
-
-    //p = memchr(s, ch, 20);//
-    p = ft_memchr(s, ch, 20);
-    if (p == NULL)
-        printf("Nothing idiot\n");
-    else
-        printf("%s\n", p);
+	unsigned char *result = (memchr("A3\042567", '2', 5));
+	printf("   %c\n", *result);
+	unsigned char *ft_result = (ft_memchr("A3\042567", '2', 5));
+	printf("ft_%c\n", *ft_result);
+	return(0);
 }*/
