@@ -7,4 +7,5 @@ git checkout main
 
 Quando INIZIAMO(per copiare le modifiche)
 git pull
+git merge
 risolvi conflitti 
