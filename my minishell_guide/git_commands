@@ -1,8 +1,11 @@
 Quando si FINISCE il lavoro
-git checkout main
+git checkout (nome del branch)
 git add.
-git commit
+git commit -m "commment"
 git push
+git checkout main
 
 Quando INIZIAMO(per copiare le modifiche)
 git pull
+git merge
+risolvi conflitti 
