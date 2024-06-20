@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/06/20 19:42:06 by aeid             ###   ########.fr       */
+=======
+/*   Updated: 2024/06/20 19:44:02 by anomourn         ###   ########.fr       */
+>>>>>>> 8115eb69aa0e6ae3e00f2bef033d90d10ebc4382
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +51,4 @@ int main (int argc, char **argv, char **env)
 	printTokens(data.tokens);
 }
 //https://www.gnu.org/software/bash/manual/bash.html#Shell-Operation
+//test
