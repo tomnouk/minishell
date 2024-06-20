@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 17:23:26 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 18:54:22 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void quote_removal_copy(char *string, t_data *data, t_tkn_data *token, t_list *n
 			ft_copier(&i, '\"', string, data, &quote_flag);
 			token->type = WORD_WITH_DQUOTE_INSIDE;
 		}
-		else if (data->args[data->start + i] == '\'')
+		else if (data->args[data->start + i] == '\'') 
 			ft_copier(&i, '\'', string, data, &quote_flag);
 		else
 		{

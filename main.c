@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 18:52:09 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 18:53:37 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main (int argc, char **argv, char **env)
 	data.mini_env = get_env(data, env);
 	data.tokens = NULL;
 	printf("You entered: %s\n", data.args);
-	print_env(data);
+	//print_env(data);
 	ft_tokenizing(&data);
 	// //ft_parsing(&data);
 	printTokens(data.tokens);
