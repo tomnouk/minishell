@@ -6,7 +6,7 @@
 /*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 19:58:33 by rpaic             #+#    #+#             */
-/*   Updated: 2024/06/16 21:01:10 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/06/20 15:31:54 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ t_list    *get_env(t_data data, char **env)
         env_list = ft_lstnew((char *)env[i]);
         if (!env_list) //garbge_collector
             return (NULL);
-        ft_lstadd_back(&data.mini_env, env_list);    
+        ft_lstadd_back(&data.mini_env, env_list);
+        free(env_list);
         i++;
     }
     return (data.mini_env);

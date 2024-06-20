@@ -6,7 +6,7 @@
 /*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/16 21:34:44 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/06/20 18:55:15 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ int main (int argc, char **argv, char **env)
 
 	data.args = readline("Enter a string: ");
 	data.mini_env = get_env(data, env);
-	data.tokens = NULL;
-	printf("You entered: %s\n", data.args);
-	ft_tokenizing(&data);
+	print_env(data);
+	//data.tokens = NULL;
+	//printf("You entered: %s\n", data.args);
+	//ft_tokenizing(&data);
 	// //ft_parsing(&data);
-	printTokens(data.tokens);
+	//printTokens(data.tokens);
 }
 //https://www.gnu.org/software/bash/manual/bash.html#Shell-Operation
