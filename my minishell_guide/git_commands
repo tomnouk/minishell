@@ -1,9 +1,12 @@
 Quando si FINISCE il lavoro
-git checkout main
 git add.
 git commit -m "commment"
 git push
+git checkout main
 
 Quando INIZIAMO(per copiare le modifiche)
 git pull
 riolvi conflitti
+
+#######
+git reset - per rimuovere il git add .
