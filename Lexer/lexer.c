@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:58:04 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 22:00:34 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void define_type(char *args, int cur, t_types *type)
 void ft_tokenizing(t_data *data)
 {
 	t_types type;
+	t_tkn_data *token;
 
 	data->current = -1;
 	data->start = 0;
@@ -80,5 +81,7 @@ void ft_tokenizing(t_data *data)
 			ft_word_token(data, type);	
 		else
 			ft_meta_token(data, type);
+		token = (t_tkn_data *)data->tokens->content;
+		expander(data->mini_env, data->tokens, token->token, token->type);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 20:03:52 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 22:30:22 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void ft_word_token(t_data *data, t_types type)
 	quote_flag = 0;
 	token->type = type;
 	string = NULL;
-	while (data->args[data->current] && data->args[data->current] != '\n')
+	while (data->args[data->current])
 	{
 		if (ft_checker(data, &quote_flag))
 			break ;
