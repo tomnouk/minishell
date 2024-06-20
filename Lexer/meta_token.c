@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 20:15:14 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 17:13:11 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 17:14:22 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,3 @@ void ft_meta_token(t_data *data, t_types type)
 	(data->current)--;
 }
 
-/*
-	if (data->args[*current] == '|' || data->args[*current] == '>' || data->args[*current] == '<')
-	{
-		string = ft_substr(data->args, *current, 1);
-		token->token = string;
-		token->type = type;
-		node->content = token;
-		node->next = NULL;
-		ft_lstadd_back(&data->tokens, node);
-		(*current)++;
-		*start = *current;
-	}
-	else if (data->args[*current] == '$')
-	{
-		(*current)++;
-		while (data->args[*current] && data->args[*current] != ' ' && data->args[*current] != '\t' && data->args[*current] != '\n')
-			(*current)++;
-		string = ft_substr(data->args, *start, *current - *start);
-		token->token = string;
-		token->type = type;
-		node->content = token;
-		node->next = NULL;
-		ft_lstadd_back(&data->tokens, node);
-		*start = *current;
-	}
-}
-*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/16 21:34:44 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/06/20 18:52:09 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,14 @@
 //         current = current->next;
 //     }
 // }
-
+static void printTokens(t_list *tokens) {
+    t_list *current = tokens;
+    while (current != NULL) {
+        t_tkn_data *tokenData = (t_tkn_data *)current->content;
+        printf("%s\n", tokenData->token);
+        current = current->next;
+    }
+}
 
 int main (int argc, char **argv, char **env)
 {
@@ -34,6 +41,7 @@ int main (int argc, char **argv, char **env)
 	data.mini_env = get_env(data, env);
 	data.tokens = NULL;
 	printf("You entered: %s\n", data.args);
+	print_env(data);
 	ft_tokenizing(&data);
 	// //ft_parsing(&data);
 	printTokens(data.tokens);

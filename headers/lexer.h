@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:21 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:55:04 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 17:22:48 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef enum s_types
 	META_APPEND, // >>
 	META_HEREDOC, // <<
 	WORD,
-	WORD_WITH_SQUOTE_INSIDE, //dont check for $
+	WORD_WITH_DQUOTE_INSIDE, //check for $
 } t_types;
 
 typedef struct s_tkn_data

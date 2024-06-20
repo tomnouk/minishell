@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+         #
+#    By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 20:49:57 by aeid              #+#    #+#              #
-#    Updated: 2024/06/16 20:37:05 by rpaic            ###   ########.fr        #
+#    Updated: 2024/06/20 17:19:10 by aeid             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ B_OBJ = $(B_PATH:.c=.o)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(M_OBJ) $(L_OBJ) $(B_OBJ)
-	make bonus -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
 	$(CC) $(M_OBJ) $(L_OBJ) $(B_OBJ) $(LFLAGS) -lreadline -o $(NAME)
 
 all: $(NAME)
