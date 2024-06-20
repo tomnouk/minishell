@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 19:05:37 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:54:57 by aeid             ###   ########.fr       */
+/*   Created: 2023/11/07 09:23:42 by aeid              #+#    #+#             */
+/*   Updated: 2023/11/13 14:09:22 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/minishell.h"
+#include "libft.h"
 
-void memory_allocator(void **ptr, size_t size)
+void	ft_putstr_fd(char *s, int fd)
 {
-	*ptr = malloc(size);
-	if (!*ptr)
-		return ;
-}
-
-int ft_isquote(int c)
-{
-	if (c == '\'' || c == '\"')
-		return (1);
-	return (0);
-}
-
-int ft_ismeta(int c)
-{
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (0);
+	if (s)
+		write(fd, s, ft_strlen(s));
 }

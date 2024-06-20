@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 19:05:37 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:54:57 by aeid             ###   ########.fr       */
+/*   Created: 2023/11/10 14:20:24 by aeid              #+#    #+#             */
+/*   Updated: 2023/11/10 14:20:27 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/minishell.h"
+#include "libft.h"
 
-void memory_allocator(void **ptr, size_t size)
-{
-	*ptr = malloc(size);
-	if (!*ptr)
-		return ;
-}
+//#include <stdio.h>//
+//#include <ctype.h>//
 
-int ft_isquote(int c)
+int	ft_isdigit(int c)
 {
-	if (c == '\'' || c == '\"')
+	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-int ft_ismeta(int c)
+/*int main()
 {
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (0);
-}
+    int num = 'a';
+    //if (isdigit (num) == 1)//
+        //printf("digit");//
+    if (ft_isdigit (num) == 1)
+        printf("digit");
+    else
+        printf("shit");
+}*/

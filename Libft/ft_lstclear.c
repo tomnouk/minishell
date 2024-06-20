@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 19:05:37 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:54:57 by aeid             ###   ########.fr       */
+/*   Created: 2023/11/08 10:28:20 by aeid              #+#    #+#             */
+/*   Updated: 2023/11/10 14:39:38 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/minishell.h"
+#include "libft.h"
 
-void memory_allocator(void **ptr, size_t size)
+/*void delete(void *content)
 {
-	*ptr = malloc(size);
-	if (!*ptr)
+	free(content)
+}*/
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	if (!lst || !del || !(*lst))
 		return ;
-}
-
-int ft_isquote(int c)
-{
-	if (c == '\'' || c == '\"')
-		return (1);
-	return (0);
-}
-
-int ft_ismeta(int c)
-{
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (0);
+	ft_lstclear (&((*lst)->next), del);
+	(del)((*lst)->content);
+	free(*lst);
+	*lst = NULL;
 }

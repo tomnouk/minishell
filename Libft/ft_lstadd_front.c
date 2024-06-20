@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 19:05:37 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:54:57 by aeid             ###   ########.fr       */
+/*   Created: 2023/11/07 11:35:11 by aeid              #+#    #+#             */
+/*   Updated: 2023/11/10 14:39:01 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/minishell.h"
+#include "libft.h"
 
-void memory_allocator(void **ptr, size_t size)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	*ptr = malloc(size);
-	if (!*ptr)
+	if (!lst || !new)
 		return ;
-}
-
-int ft_isquote(int c)
-{
-	if (c == '\'' || c == '\"')
-		return (1);
-	return (0);
-}
-
-int ft_ismeta(int c)
-{
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (0);
+	new->next = *lst;
+	*lst = new;
 }

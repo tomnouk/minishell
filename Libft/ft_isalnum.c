@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 19:05:37 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:54:57 by aeid             ###   ########.fr       */
+/*   Created: 2023/11/10 14:17:54 by aeid              #+#    #+#             */
+/*   Updated: 2023/11/10 14:18:00 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/minishell.h"
+#include "libft.h"
 
-void memory_allocator(void **ptr, size_t size)
-{
-	*ptr = malloc(size);
-	if (!*ptr)
-		return ;
-}
+//#include <stdio.h>//
+//#include <ctype.h>//
 
-int ft_isquote(int c)
+int	ft_isalnum(int c)
 {
-	if (c == '\'' || c == '\"')
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0'
+			&& c <= '9'))
 		return (1);
 	return (0);
 }
 
-int ft_ismeta(int c)
+/*int main()
 {
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (0);
-}
+    int i = 'b';
+
+    if (isalnum(i) == 1)
+        printf("alpha numeric");
+    //if (ft_isalnum(i) == 1)//
+        //printf("alpha numeric");//
+    else
+        printf("shit");
+}*/

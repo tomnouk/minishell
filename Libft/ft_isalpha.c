@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 19:05:37 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:54:57 by aeid             ###   ########.fr       */
+/*   Created: 2023/11/10 14:18:23 by aeid              #+#    #+#             */
+/*   Updated: 2023/11/10 14:18:30 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/minishell.h"
+#include "libft.h"
 
-void memory_allocator(void **ptr, size_t size)
-{
-	*ptr = malloc(size);
-	if (!*ptr)
-		return ;
-}
+//#include <stdio.h>//
+//#include <ctype.h>//
 
-int ft_isquote(int c)
+int	ft_isalpha(int c)
 {
-	if (c == '\'' || c == '\"')
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 		return (1);
 	return (0);
 }
 
-int ft_ismeta(int c)
+/*int main(void)
 {
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (0);
-}
+    char text = '1';
+    if (isalpha (text) == 1)
+        printf("alpha");
+
+    //else if (ft_isalpha (text) == 1)//
+        //printf("alpha");//
+    else
+        printf("shit");
+    
+}*/

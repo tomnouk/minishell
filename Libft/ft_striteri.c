@@ -1,34 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/08 19:05:37 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:54:57 by aeid             ###   ########.fr       */
+/*   Created: 2023/11/10 16:42:42 by aeid              #+#    #+#             */
+/*   Updated: 2023/11/10 16:42:45 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/minishell.h"
+#include "libft.h"
 
-void memory_allocator(void **ptr, size_t size)
+//#include <stdio.h>//
+
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	*ptr = malloc(size);
-	if (!*ptr)
-		return ;
+	size_t	i;
+
+	if (s && f)
+	{
+		i = 0;
+		while (s[i] != '\0')
+		{
+			f(i, &s[i]);
+			i++;
+		}
+	}
+}
+/*
+void	f(unsigned int i, char *str)
+{
+  
+    if (*str == '1')
+        *str = ' ';
 }
 
-int ft_isquote(int c)
+int main ()
 {
-	if (c == '\'' || c == '\"')
-		return (1);
-	return (0);
-}
-
-int ft_ismeta(int c)
-{
-	if (c == '|' || c == '>' || c == '<')
-		return (1);
-	return (0);
-}
+    char str[] = "Hello1World";
+    ft_striteri(str, f);
+    printf("%s\n", str);
+    return (0);
+}*/
