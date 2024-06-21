@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:21 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 17:22:48 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 17:22:37 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 
 typedef enum s_types
 {
-	SPECIAL_SQUOTE, //in parsing check for escape chars
-	SPECIAL_DQUOTE, //in parsing check for escape chars
-	META_DOL, // check for $ | > < >> <<
-	META_PIPE,
-	META_REDIR_IN, // <
-	META_REDIR_OUT, // >
-	META_APPEND, // >>
-	META_HEREDOC, // <<
-	WORD,
-	WORD_WITH_DQUOTE_INSIDE, //check for $
+	SPECIAL_SQUOTE, //in parsing check for escape chars. [0]
+	SPECIAL_DQUOTE, //in parsing check for escape chars   [1]
+	META_DOL, // check for $ | > < >> <<					[2]	
+	META_PIPE,		// |									[3]
+	META_REDIR_IN, // <										[4]
+	META_REDIR_OUT, // >									[5]
+	META_APPEND, // >>										[6]
+	META_HEREDOC, // <<										[7]
+	WORD,												// [8]
+	WORD_WITH_DQUOTE_INSIDE, //check for $ 					[9]
 } t_types;
 
 typedef struct s_tkn_data
