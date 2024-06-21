@@ -6,7 +6,7 @@
 #    By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 20:49:57 by aeid              #+#    #+#              #
-#    Updated: 2024/06/20 22:05:28 by aeid             ###   ########.fr        #
+#    Updated: 2024/06/21 16:44:24 by aeid             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ M_SRC = main.c
 M_OBJ = $(M_SRC:.c=.o)
 
 L_SRC = lexer.c word_token.c utils.c meta_token.c special_token.c \
-		meta_cases.c
+		meta_cases.c define_builtins.c
 L_DIR = Lexer/
 L_PATH = $(addprefix $(L_DIR), $(L_SRC))
 L_OBJ = $(L_PATH:.c=.o)

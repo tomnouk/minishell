@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 22:30:22 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 19:30:20 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void quote_removal_copy(char *string, t_data *data, t_tkn_data *token, t_list *n
 		if (data->args[data->start + i] == '\"')
 		{
 			ft_copier(&i, '\"', string, data, &quote_flag);
-			token->type = WORD_WITH_DQUOTE_INSIDE;
+			if (token->type != WORD_DOL)
+				token->type = WORD_WITH_DQUOTE_INSIDE;
 		}
 		else if (data->args[data->start + i] == '\'') 
 			ft_copier(&i, '\'', string, data, &quote_flag);
@@ -65,18 +66,24 @@ void quote_removal_copy(char *string, t_data *data, t_tkn_data *token, t_list *n
 	copy_assign(string, data, token, node);
 }
 
-int static ft_checker(t_data *data, int *quote_flag)
+int static ft_checker(t_data *data, int *quote_flag, t_tkn_data *token)
 {
 	if (!ft_isprint(data->args[data->current]) && !(*quote_flag % 2))
 		return (1);
 	else if (ft_ismeta(data->args[data->current]) && !(*quote_flag % 2))
 		return (1);
+	else if (data->args[data->current] == '$')
+		token->type = WORD_DOL;
 	else if (data->args[data->current] == '\"')
 	{
 		(*quote_flag)++;
 		(data->current)++;
 		while (data->args[data->current] != '\"')
+		{
+			if (data->args[data->current] == '$')
+				get_variable_len(data, data->current, token->variable_len);
 			(data->current)++;
+		}
 		if (data->args[data->current] == '\"')
 			(*quote_flag)++;
 	}
@@ -103,10 +110,11 @@ void ft_word_token(t_data *data, t_types type)
 	memory_allocator((void **)&token, sizeof(t_tkn_data));
 	quote_flag = 0;
 	token->type = type;
+	token->variable_len = 0;
 	string = NULL;
 	while (data->args[data->current])
 	{
-		if (ft_checker(data, &quote_flag))
+		if (ft_checker(data, &quote_flag, token))
 			break ;
 		(data->current)++; 
 	}

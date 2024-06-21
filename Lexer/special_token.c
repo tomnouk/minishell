@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:38:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/14 18:53:40 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 17:59:56 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void ft_special_token(t_data *data, t_types type)
 	memory_allocator((void **)&node, sizeof(t_list));
 	memory_allocator((void **)&token, sizeof(t_tkn_data));
 	token->type = type;
+	token->variable_len = 0;
 	special_token_handler(data, node, token);
 	(data->current)++;
 }
