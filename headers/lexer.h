@@ -6,7 +6,7 @@
 /*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:21 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 17:22:37 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/06/21 21:34:41 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,31 @@
 
 typedef enum s_types
 {
-	SPECIAL_SQUOTE, //in parsing check for escape chars. [0]
-	SPECIAL_DQUOTE, //in parsing check for escape chars   [1]
-	META_DOL, // check for $ | > < >> <<					[2]	
-	META_PIPE,		// |									[3]
-	META_REDIR_IN, // <										[4]
-	META_REDIR_OUT, // >									[5]
-	META_APPEND, // >>										[6]
-	META_HEREDOC, // <<										[7]
-	WORD,												// [8]
-	WORD_WITH_DQUOTE_INSIDE, //check for $ 					[9]
+	SPECIAL_SQUOTE, //in parsing check for escape chars
+	SPECIAL_DQUOTE, //in parsing check for escape chars
+	META_DOL, // check for $ | > < >> <<
+	META_PIPE,
+	META_REDIR_IN, // <
+	META_REDIR_OUT, // >
+	META_APPEND, // >>
+	META_HEREDOC, // <<
+	WORD_EXPORT,
+	WORD_UNSET,
+	WORD_ENV,
+	WORD_ECHO,
+	WORD_CD,
+	WORD_EXIT,
+	WORD_PWD,
+	WORD_DOL, //ec$"ho" vs ec"$ho"
+	WORD,
+	WORD_WITH_DQUOTE_INSIDE, //check for $
 } t_types;
 
 typedef struct s_tkn_data
 {
 	char *token;
 	t_types type;
+	int variable_len;
 } t_tkn_data;
 
 void ft_tokenizing(t_data *data);
@@ -45,5 +54,7 @@ void ft_word_token(t_data *data, t_types type);
 void dollar_meta(t_data *data, t_list *node, t_tkn_data *token);
 void pipe_meta(t_data *data, t_list *node, t_tkn_data *token);
 void redirect_meta(t_data *data, t_list *node, t_tkn_data *token);
+void define_builtins(char *tkn_str, t_types tkn_type);
+void get_variable_len(t_data *data, int dol_position, int *variable_len);
 
 #endif

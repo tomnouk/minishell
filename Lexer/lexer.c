@@ -6,7 +6,7 @@
 /*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 16:48:42 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/06/21 21:34:06 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void ft_tokenizing(t_data *data)
 			ft_meta_token(data, type);
 		token = (t_tkn_data *)data->tokens->content;
 		//expander(data->mini_env, data->tokens, token->token, token->type);
+		define_builtins(token->token, token->type);
 	}
 }

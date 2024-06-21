@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:13:57 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/14 18:53:10 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 20:01:00 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void pipe_meta(t_data *data, t_list *node, t_tkn_data *token)
 // else take only $ sign
 void dollar_meta(t_data *data, t_list *node, t_tkn_data *token)
 {
+	get_variable_len(data, data->current, &token->variable_len);
 	(data->current)++;
 	if (ft_isalpha(data->args[data->current]))
 		while ((ft_isalpha(data->args[data->current]) || data->args[data->current] == '_'))
