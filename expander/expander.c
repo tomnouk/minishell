@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 22:03:20 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 23:16:30 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 23:26:25 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ static void meta_dol_expander(t_list *mini_env, int variable_len, char **tkn_str
 	else
 		*tkn_str = NULL;
 }
-
+/*
 static void dquote_expander(t_list *mini_env, int variable_len, char **tkn_str)
 {
 
-}
+}*/
 
 void expander(t_list *mini_env, int variable_len, char **tkn_str, t_types tkn_type)
 {
@@ -51,8 +51,8 @@ void expander(t_list *mini_env, int variable_len, char **tkn_str, t_types tkn_ty
 	i = 0;
 	if (tkn_type == META_DOL)
 		meta_dol_expander(mini_env, variable_len, tkn_str);
-	else if (tkn_type == SPECIAL_DQUOTE)
-		dquote_expander(mini_env, variable_len, tkn_str);
+	/*else if (tkn_type == SPECIAL_DQUOTE)
+		dquote_expander(mini_env, variable_len, tkn_str);*/
 	/*else if (tkn_type = WORD_DOL || tkn_type == WORD_WITH_DQUOTE_INSIDE)
 	{
 		

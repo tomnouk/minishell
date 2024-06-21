@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 23:21:02 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 23:27:04 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ int main (int argc, char **argv, char **env)
 	printf("You entered: %s\n", data.args);
 	ft_tokenizing(&data);
 	//ft_parsing(&data);
-	//printTokens(data.tokens);
-	if (data.tokens != NULL)
+	printTokens(data.tokens);
+	/*if (data.tokens != NULL)
 	{
 		ft_parsing(&data);
-	}
+	}*/
 }
 //https://www.gnu.org/software/bash/manual/bash.html#Shell-Operation
 //test
