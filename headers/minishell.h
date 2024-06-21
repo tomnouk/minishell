@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:04 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 22:07:16 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 20:14:25 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_data
 
 # include "lexer.h"
 # include "builtins.h"
-# include "expander.h"
+//# include "expander.h"
 //# include "parsing.h"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 17:38:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 17:59:56 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 19:56:30 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ static void special_token_handler(t_data *data, t_list *node, t_tkn_data *token)
 			(data->current)++;
 	else
 		while (data->args[data->current] && data->args[data->current] != '\"')
+		{
+			if (data->args[data->current] == '$')
+				get_variable_len(data, data->current, &token->variable_len);
 			(data->current)++;
+		}
 	token->token = ft_substr(data->args, data->start + 1, data->current - data->start - 1);
 	node->content = token;
 	node->next = NULL;

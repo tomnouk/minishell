@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 19:30:20 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 21:15:54 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int static ft_checker(t_data *data, int *quote_flag, t_tkn_data *token)
 		while (data->args[data->current] != '\"')
 		{
 			if (data->args[data->current] == '$')
-				get_variable_len(data, data->current, token->variable_len);
+				get_variable_len(data, data->current, &token->variable_len);
 			(data->current)++;
 		}
 		if (data->args[data->current] == '\"')

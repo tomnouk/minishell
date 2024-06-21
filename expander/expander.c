@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 22:03:20 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 22:31:19 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 21:25:52 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void expander(t_list *mini_env, t_list *tokens, char *tkn_str, t_types tkn_type)
 			return ;
 		i++;
 		while (tkn_str[i])
+	}
+	else if (tkn_type = WORD_DOL)
+	{
+		
 	}
 	return ;
 }
