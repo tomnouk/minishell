@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 19:05:37 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 16:54:57 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 18:04:56 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,16 @@ int ft_ismeta(int c)
 		return (1);
 	return (0);
 }
+
+// void	free_env(t_list *env_list)
+// {
+// 	t_list	*tmp;
+
+// 	while (env_list)
+// 	{
+// 		tmp = env_list;
+// 		env_list = env_list->next;
+// 		free(tmp->content);
+// 		free(tmp);
+// 	}
+// }

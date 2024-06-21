@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meta_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 20:15:14 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 17:14:22 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/20 20:05:58 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void meta_token_handler(t_data *data, t_list *node, t_tkn_data *token)
 {
 	if (data->args[data->current] == '$')
 		dollar_meta(data, node, token);
+		
 	else if (data->args[data->current] == '|')
 		pipe_meta(data, node, token);
 	else if (data->args[data->current] == '>' || data->args[data->current] == '<')

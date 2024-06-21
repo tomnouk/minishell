@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:21 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 17:22:48 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 18:00:37 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ void ft_word_token(t_data *data, t_types type);
 void dollar_meta(t_data *data, t_list *node, t_tkn_data *token);
 void pipe_meta(t_data *data, t_list *node, t_tkn_data *token);
 void redirect_meta(t_data *data, t_list *node, t_tkn_data *token);
+void free_env(t_list *env_list);
 
 #endif

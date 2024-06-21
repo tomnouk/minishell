@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 21:20:29 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 18:04:41 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int main (int argc, char **argv, char **env)
 	ft_tokenizing(&data);
 	//ft_parsing(&data);
 	printTokens(data.tokens);
+	//free_env(data.mini_env);
 }
 //https://www.gnu.org/software/bash/manual/bash.html#Shell-Operation
-//test
