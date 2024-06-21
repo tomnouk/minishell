@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 20:14:50 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/21 22:45:33 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void ft_tokenizing(t_data *data)
 		else
 			ft_meta_token(data, type);
 		token = (t_tkn_data *)data->tokens->content;
-		//expander(data->mini_env, data->tokens, token->token, token->type);
+		expander(data->mini_env, token->variable_len, &token->token, token->type);
 		define_builtins(token->token, token->type);
 	}
 }
