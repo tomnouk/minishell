@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 22:03:20 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/22 01:02:38 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/23 01:13:00 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,68 +42,71 @@ static void meta_dol_expander(t_list *mini_env, int variable_len, char **tkn_str
 static void dquote_expander(t_list *mini_env, int variable_len, char **tkn_str)
 {
 	int i;
-	int curr;
+	int start;
 	char *variable;
 	char *var_expand;
-	char *tmp;
 	char *new;
-	char *new_tmp;
-	
+
 	i = 0;
-	curr = 0;
+	start = 0;
 	variable = NULL;
-	tmp = NULL;
 	var_expand = NULL;
 	new = NULL;
-	new_tmp = NULL;
 	if ((*tkn_str)[i + 1] == '\0' || (*tkn_str)[i + 1] == ' ' || variable_len == 0)
 			return ;
-	while ((*tkn_str)[i] != '\0' && variable_len > 0)
+	while ((*tkn_str)[i] != '\0')
 	{
 		if ((*tkn_str)[i] == '$')
 		{
-			memory_allocator((void **)&tmp, i - curr + 1);
-			ft_strlcpy(tmp, *tkn_str, i - curr + 1);
-			curr = i;
-			while (ft_isprint((*tkn_str)[i]) && (*tkn_str)[i] != '\0' && !ft_ismeta((*tkn_str)[i]))
+			i++;
+			while (ft_isprint((*tkn_str)[i]) && (*tkn_str)[i] != '\0' && !ft_ismeta((*tkn_str)[i]) && variable_len > 0)
+			{
 				i++;
-			memory_allocator((void **)&variable, i - curr);
-			ft_strlcpy(variable, &(*tkn_str)[curr + 1], i - curr);
-			variable_len = variable_len - (i - curr - 1);
+				variable_len--;
+			}
+			memory_allocator((void **)&variable, i - start);
+			ft_strlcpy(variable, &(*tkn_str)[start + 1], i - start);
 			var_expand = search_env(mini_env, variable);
 			if (var_expand)
-				new = ft_strjoin(tmp, var_expand);
-			else
-			{
-				memory_allocator((void **)&new, ft_strlen(tmp) + 1);
-				ft_strlcpy(new, tmp, ft_strlen(tmp) + 1);
-			}
-			free(tmp);
+				new = ft_strjoin(new, var_expand);
+			else if ((*tkn_str)[i] != '\0')
+				new = ft_strjoin(new," ");
 			free(variable);
 			if (var_expand)
 				free(var_expand);
-			curr = i;
 		}
 		else
-			i++;
+		{
+			while ((*tkn_str)[i] != '\0' && !ft_ismeta((*tkn_str)[i]) && (*tkn_str)[i] != '$')	
+				i++;
+			new = ft_strjoin(new, ft_substr(*tkn_str, start, i - start));
+		}
+		start = i;
 	}
 	free(*tkn_str);
 	*tkn_str = new;
 }
 
-
-void expander(t_list *mini_env, int variable_len, char **tkn_str, t_types tkn_type)
+void expander(t_list *mini_env, t_list *tokens)
 {
-	int i;
+	t_list *current;
+	t_tkn_data *tmp;
 
-	i = 0;
-	if (tkn_type == META_DOL)
-		meta_dol_expander(mini_env, variable_len, tkn_str);
-	else if (tkn_type == SPECIAL_DQUOTE)
-		dquote_expander(mini_env, variable_len, tkn_str);
+	current = tokens;
+	while (current)
+	{
+		tmp = (t_tkn_data *)current->content;
+		if (tmp->type == META_DOL)
+			meta_dol_expander(mini_env, tmp->variable_len, &tmp->token);
+		else if (tmp->type == SPECIAL_DQUOTE || tmp->type == WORD_DOL || tmp->type == WORD_WITH_DQUOTE_INSIDE)
+		{
+			
+			dquote_expander(mini_env, tmp->variable_len, &tmp->token);
+		}
 	/*else if (tkn_type = WORD_DOL || tkn_type == WORD_WITH_DQUOTE_INSIDE)
 	{
-		
+		set the type back to word, so it is easier to handle later
 	}*/
-	return ;
+		current = current->next;
+	}
 }

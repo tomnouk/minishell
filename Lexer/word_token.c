@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 23:02:06 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/23 00:55:13 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void  ft_copier(int *i, int c, char *string, t_data *data, int *quote_fla
 	while (*i < len && *quote_flag != 0)
 	{
 		(data->start)++;
-		quote_flag--;
-		while (data->args[data->start + *i] != c && data->args[data->start + *i] != '\n')
+		(*quote_flag)--;
+		while (data->args[data->start + *i] != c && data->args[data->start + *i] != '\0')
 		{
 			string[*i] = data->args[data->start + *i];
 			(*i)++;
@@ -73,7 +73,12 @@ int static ft_checker(t_data *data, int *quote_flag, t_tkn_data *token)
 	else if (ft_ismeta(data->args[data->current]) && !(*quote_flag % 2))
 		return (1);
 	else if (data->args[data->current] == '$')
+	{
 		token->type = WORD_DOL;
+		get_variable_len(data, data->current, &token->variable_len);
+		if (token->variable_len == 0 && data->args[data->current + 1] == '\"')
+				token->variable_len++;
+	}
 	else if (data->args[data->current] == '\"')
 	{
 		(*quote_flag)++;
@@ -86,6 +91,13 @@ int static ft_checker(t_data *data, int *quote_flag, t_tkn_data *token)
 		}
 		if (data->args[data->current] == '\"')
 			(*quote_flag)++;
+		if (ft_isprint(data->args[data->current + 1]) && !ft_ismeta(data->args[data->current + 1]) && data->args[data->current + 1] != '$')
+		{
+			(data->current)++;
+			while (ft_isprint(data->args[data->current]) && !ft_ismeta(data->args[data->current]) && data->args[data->current] != '$' && data->args[data->current] != '\0')
+				(data->current)++;
+			return (1);
+		}
 	}
 	else if (data->args[data->current] == '\'')
 	{
