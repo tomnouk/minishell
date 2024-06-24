@@ -4,9 +4,10 @@
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:21 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 18:00:37 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/06/21 21:34:41 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +26,14 @@ typedef enum s_types
 	META_REDIR_OUT, // >
 	META_APPEND, // >>
 	META_HEREDOC, // <<
+	WORD_EXPORT,
+	WORD_UNSET,
+	WORD_ENV,
+	WORD_ECHO,
+	WORD_CD,
+	WORD_EXIT,
+	WORD_PWD,
+	WORD_DOL, //ec$"ho" vs ec"$ho"
 	WORD,
 	WORD_WITH_DQUOTE_INSIDE, //check for $
 } t_types;
@@ -33,6 +42,7 @@ typedef struct s_tkn_data
 {
 	char *token;
 	t_types type;
+	int variable_len;
 } t_tkn_data;
 
 void ft_tokenizing(t_data *data);
@@ -45,6 +55,7 @@ void ft_word_token(t_data *data, t_types type);
 void dollar_meta(t_data *data, t_list *node, t_tkn_data *token);
 void pipe_meta(t_data *data, t_list *node, t_tkn_data *token);
 void redirect_meta(t_data *data, t_list *node, t_tkn_data *token);
-void free_env(t_list *env_list);
+void define_builtins(char *tkn_str, t_types tkn_type);
+void get_variable_len(t_data *data, int dol_position, int *variable_len);
 
 #endif

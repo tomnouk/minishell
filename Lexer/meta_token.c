@@ -6,7 +6,7 @@
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 20:15:14 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/20 20:05:58 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/06/24 11:28:51 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void ft_meta_token(t_data *data, t_types type)
 	memory_allocator((void **)&node, sizeof(t_list));
 	memory_allocator((void **)&token, sizeof(t_tkn_data));
 	token->type = type;
+	token->variable_len = 0;
 	meta_token_handler(data, node, token);
 	(data->current)--;
 }

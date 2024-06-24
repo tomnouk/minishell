@@ -6,7 +6,7 @@
 #    By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 20:49:57 by aeid              #+#    #+#              #
-#    Updated: 2024/06/20 22:05:28 by aeid             ###   ########.fr        #
+#    Updated: 2024/06/21 23:16:58 by aeid             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ M_SRC = main.c
 M_OBJ = $(M_SRC:.c=.o)
 
 L_SRC = lexer.c word_token.c utils.c meta_token.c special_token.c \
-		meta_cases.c
+		meta_cases.c define_builtins.c
 L_DIR = Lexer/
 L_PATH = $(addprefix $(L_DIR), $(L_SRC))
 L_OBJ = $(L_PATH:.c=.o)
@@ -42,7 +42,7 @@ B_DIR = builtins/
 B_PATH = $(addprefix $(B_DIR), $(B_SRC))
 B_OBJ = $(B_PATH:.c=.o)
 
-E_SRC = expander.C
+E_SRC = expander.c search_env.c
 E_DIR = expander/
 E_PATH = $(addprefix $(E_DIR), $(E_SRC))
 E_OBJ = $(E_PATH:.c=.o)
@@ -50,14 +50,14 @@ E_OBJ = $(E_PATH:.c=.o)
 %.o: %.c $(H_PATH) Makefile
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(M_OBJ) $(L_OBJ) $(B_OBJ)
+$(NAME): $(M_OBJ) $(L_OBJ) $(B_OBJ) $(E_OBJ)
 	make -C $(LIBFT_DIR)
-	$(CC) $(M_OBJ) $(L_OBJ) $(B_OBJ) $(LFLAGS) -lreadline -o $(NAME)
+	$(CC) $(M_OBJ) $(L_OBJ) $(B_OBJ) $(E_OBJ) $(LFLAGS) -lreadline -o $(NAME)
 
 all: $(NAME)
 
 clean:
-	$(RM) $(M_OBJ) $(L_OBJ) $(B_OBJ)
+	$(RM) $(M_OBJ) $(L_OBJ) $(B_OBJ) $(E_OBJ)
 	
 
 fclean: clean

@@ -3,6 +3,8 @@
         "stddef.h": "c",
         "stdlib.h": "c",
         "minishell.h": "c",
-        "readline.h": "c"
+        "readline.h": "c",
+        "stdio.h": "c",
+        "expander.h": "c"
     }
 }

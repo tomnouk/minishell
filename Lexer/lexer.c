@@ -6,9 +6,10 @@
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 17:49:50 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/06/24 11:28:45 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 # include "../headers/minishell.h"
 
@@ -64,7 +65,6 @@ static void define_type(char *args, int cur, t_types *type)
 void ft_tokenizing(t_data *data)
 {
 	t_types type;
-	t_tkn_data *token;
 
 	data->current = -1;
 	data->start = 0;
@@ -81,7 +81,7 @@ void ft_tokenizing(t_data *data)
 			ft_word_token(data, type);	
 		else
 			ft_meta_token(data, type);
-		token = (t_tkn_data *)data->tokens->content;
-		//expander(data->mini_env, data->tokens, token->token, token->type);
 	}
+	expander(data->mini_env, data->tokens);
+	//define_builtins(token->token, token->type);
 }
