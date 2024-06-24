@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/23 00:55:13 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/24 19:48:46 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,34 +21,94 @@ static void copy_assign(char *string, t_data *data, t_tkn_data *token, t_list *n
 	ft_lstadd_back(&data->tokens, node);
 }
 
-static void  ft_copier(int *i, int c, char *string, t_data *data, int *quote_flag)
+static int dollar_counter(char *args, int current)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (i < current)
+	{
+		if (args[i] == '$' && ft_isquote(args[i + 1]))
+			count++;
+		i++;
+	}
+	return (count);
+}
+
+/*static void  ft_copier(int *i, int c, char *string, t_data *data, int *quote_flag)
 {
 	int len;
+	int dol_count;
 	
-	len = data->current - data->start - *quote_flag;
-	while (*i < len && *quote_flag != 0)
+	dol_count = dollar_counter(data->args, data->current);
+	len = data->current - data->start - *quote_flag - dol_count;
+	while (*i < (len + dol_count) && *quote_flag != 0)
 	{
 		(data->start)++;
 		(*quote_flag)--;
 		while (data->args[data->start + *i] != c && data->args[data->start + *i] != '\0')
 		{
-			string[*i] = data->args[data->start + *i];
+			if (dol_count && ft_isquote(data->args[data->start + *i + 1]))
+			{
+				string[*i - 1] = data->args[data->start + *i];
+				(*i)++;
+				return ;
+			}
+			else
+				string[*i] = data->args[data->start + *i];
 			(*i)++;
 		}
 	}
+}*/
+
+static void  ft_copier(int *i, int c, char *string, t_data *data, int *quote_flag)
+{
+	(data->start)++;
+	(*quote_flag)--;
+	while (data->args[data->start + *i] != c && data->args[data->start + *i] != '\0')
+	{
+		string[*i] = data->args[data->start + *i];
+		(*i)++;
+	}
+	(data->start)++;
+	(*quote_flag)--;
+}
+
+static void  ft_copier_dol(int *i, int c, char *string, t_data *data, int *quote_flag)
+{
+	(data->start)++;
+	(*quote_flag)--;
+	while (data->args[data->start + *i] == c && data->args[data->start + *i] != '\0')
+	{
+		(data->start)++;
+		(*quote_flag)--;
+	}
+	while (data->args[data->start + *i] != c && data->args[data->start + *i] != '\0')
+	{
+		string[*i] = data->args[data->start + *i];
+		(*i)++;
+	}
+	(data->start)++;
+	(*quote_flag)--;
 }
 
 void quote_removal_copy(char *string, t_data *data, t_tkn_data *token, t_list *node, int quote_flag)
 {
 	int len;
 	int i;
+	int dol_count;
 
-	len = data->current - data->start - quote_flag;
+	dol_count = dollar_counter(data->args, data->current);
+	len = data->current - data->start - quote_flag - dol_count;
 	i = 0;
 	memory_allocator((void **)&string, len + 1);
-	while (i < len && quote_flag != 0)
+	while (i < (len + dol_count))
 	{
-		if (data->args[data->start + i] == '\"')
+		if (data->args[data->start + i] == '$' && ft_isquote(data->args[data->start + i + 1]))
+			ft_copier_dol(&i, data->args[data->start + i + 1], string, data, &quote_flag);
+		else if (data->args[data->start + i] == '\"')
 		{
 			ft_copier(&i, '\"', string, data, &quote_flag);
 			if (token->type != WORD_DOL)
@@ -76,8 +136,9 @@ int static ft_checker(t_data *data, int *quote_flag, t_tkn_data *token)
 	{
 		token->type = WORD_DOL;
 		get_variable_len(data, data->current, &token->variable_len);
-		if (token->variable_len == 0 && data->args[data->current + 1] == '\"')
-				token->variable_len++;
+		//useless
+		/*if (token->variable_len == 0 && data->args[data->current + 1] == '\"')
+				token->variable_len++;*/
 	}
 	else if (data->args[data->current] == '\"')
 	{
@@ -107,6 +168,13 @@ int static ft_checker(t_data *data, int *quote_flag, t_tkn_data *token)
 			(data->current)++;
 		if (data->args[data->current] == '\'')
 			(*quote_flag)++;
+		if (ft_isprint(data->args[data->current + 1]) && !ft_ismeta(data->args[data->current + 1]) && data->args[data->current + 1] != '$')
+		{
+			(data->current)++;
+			while (ft_isprint(data->args[data->current]) && !ft_ismeta(data->args[data->current]) && data->args[data->current] != '$' && data->args[data->current] != '\0')
+				(data->current)++;
+			return (1);
+		}
 	}
 	return (0);
 }
