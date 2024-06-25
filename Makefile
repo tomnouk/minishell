@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+         #
+#    By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 20:49:57 by aeid              #+#    #+#              #
-#    Updated: 2024/06/21 23:16:58 by aeid             ###   ########.fr        #
+#    Updated: 2024/06/25 12:58:19 by anomourn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ L_OBJ = $(L_PATH:.c=.o)
 # P_PATH = $(addprefix $(P_DIR), $(P_SRC))
 # P_OBJ = $(P_PATH:.c=.o)
 
-B_SRC = get_env.c
+B_SRC = get_env.c cd.c env_utils.c cd_utils.c
 B_DIR = builtins/
 B_PATH = $(addprefix $(B_DIR), $(B_SRC))
 B_OBJ = $(B_PATH:.c=.o)

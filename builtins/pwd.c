@@ -1,26 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.h                                         :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/16 20:27:02 by rpaic             #+#    #+#             */
-/*   Updated: 2024/06/25 12:44:37 by anomourn         ###   ########.fr       */
+/*   Created: 2024/06/25 11:27:06 by anomourn          #+#    #+#             */
+/*   Updated: 2024/06/25 11:27:07 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTINS_H
-# define BUILTINS_H
-
-# include "minishell.h"
-
-t_list	*get_env(t_data data, char **env);
-void	print_env(t_data data);
-void	export(t_list *tokens); //I will analize the next token and if OK put it in mini_env
-char	*get_env_value(char *key);
-void	set_env(char *name, char *value, char **env);
-void	ft_cd(t_list *tokens, char **env);
-
-
-#endif

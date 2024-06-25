@@ -6,13 +6,15 @@
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/24 11:28:34 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:11:55 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
-
 # include "./headers/minishell.h"
+
+t_data g_data;
+
+int g_status;
 
 //int main (int argc, char **argv, char **env)
 // static void printTokens(t_list *tokens) {
@@ -66,12 +68,22 @@ void printTokens(t_list *tokens) {
     }
 }
 
-int main (int argc, char **argv, char **env)
+
+int main(int argc, char **argv, char **env)
 {
-	t_data data;
+	t_data	data;
+	char	cwd[1024];
+
+	// get path
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+		printf("path: %s\n", cwd);
+	else
+	{
+		perror("getcwd() error");
+		return 1;
+	}
 	argc = 0;
 	argv = 0;
-
 	data.args = readline("Enter a string: ");
 	data.mini_env = get_env(data, env);
 	//print_env(data);
@@ -84,5 +96,7 @@ int main (int argc, char **argv, char **env)
 	{
 		ft_parsing(&data);
 	}*/
+
+	free(data.args);
+	return 0;
 }
-//https://www.gnu.org/software/bash/manual/bash.html#Shell-Operation

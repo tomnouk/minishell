@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:38:58 by rpaic             #+#    #+#             */
-/*   Updated: 2023/10/12 17:39:00 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/06/25 12:19:49 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 /* Function prototypes */
 typedef struct s_list
 {
+	char			*key;
+	char			*value;
 	void			*content;
 	struct s_list	*next;
 }	t_list;

@@ -5,6 +5,7 @@
         "minishell.h": "c",
         "readline.h": "c",
         "stdio.h": "c",
-        "expander.h": "c"
+        "expander.h": "c",
+        "cstdlib": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/24 11:28:45 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/06/25 14:11:24 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void ft_tokenizing(t_data *data)
 			ft_meta_token(data, type);
 	}
 	expander(data->mini_env, data->tokens);
-	//define_builtins(token->token, token->type);
+	//ft_cd(data->tokens);
+	define_builtins(token->token, token->type);
 }
