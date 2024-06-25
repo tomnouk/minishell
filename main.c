@@ -6,7 +6,7 @@
 /*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/25 14:24:10 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/06/25 14:32:21 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int main (int argc, char **argv, char **env)
 	ft_tokenizing(&data);
 	//ft_parsing(&data);
 	//printTokens(data.tokens);
-    test_export(data, data.tokens);
-    printf("After export:\n");
-    print_env(data);
+    // test_export(data, data.tokens);
+    // printf("After export:\n");
+    // print_env(data);
 }
 //https://www.gnu.org/software/bash/manual/bash.html#Shell-Operation
