@@ -6,16 +6,32 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 22:02:12 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 22:50:55 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/25 23:40:22 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//this function will always return a pointer to the start after = sign
+
 # include "../headers/minishell.h"
 
-static char *find_path(char *curr_content, char *variable)
+char *find_path(char *curr_content, char *variable)
 {
+	char *eq;
+	char *path;
+	size_t len;
+
+	eq = NULL;
+	path = NULL;
+	len = 0;
 	if (!ft_strncmp(variable, curr_content, ft_strlen(variable)))
+	{
+		eq = ft_strchr(curr_content, '=');
+		path = curr_content;
+		len = eq - path;
+		if (len != ft_strlen(variable))
+			return (NULL);
 		return (ft_strchr(curr_content, '=') + 1);
+	}
 	return (NULL);
 }
 
@@ -23,19 +39,19 @@ char *search_env(t_list *mini_env, char *variable)
 {
 	t_list *current;
 	char *path;
-	char *after_expand;
+	char *after_equal_sign;
 
 	current = mini_env;
 	path = NULL;
-	after_expand = NULL;
+	after_equal_sign = NULL;
 	while (current)
 	{
 		path = find_path((char *)current->content, variable);
 		if (path)
 		{
-			memory_allocator((void **)&after_expand, ft_strlen(path) + 1);
-			ft_strlcpy(after_expand, path, ft_strlen(path) + 1);
-			return (after_expand);
+			memory_allocator((void **)&after_equal_sign, ft_strlen(path) + 1);
+			ft_strlcpy(after_equal_sign, path, ft_strlen(path) + 1);
+			return (after_equal_sign);
 		}
 		current = current->next;
 	}

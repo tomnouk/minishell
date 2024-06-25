@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
-/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 20:50:21 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/24 21:04:51 by rpaic            ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/06/25 23:29:57 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef LEXER_H
 # define LEXER_H
@@ -46,7 +46,7 @@ typedef struct s_tkn_data
 } t_tkn_data;
 
 void ft_tokenizing(t_data *data);
-void memory_allocator(void **ptr, size_t size);
+void	memory_allocator(void **ptr, size_t size);
 void ft_meta_token(t_data *data, t_types type);
 int ft_isquote(int c);
 int ft_ismeta(int c);

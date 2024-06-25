@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:53:58 by anomourn          #+#    #+#             */
-/*   Updated: 2024/06/25 15:54:00 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/06/25 23:30:23 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	memory_allocator(void **ptr, size_t size)
 {
 	*ptr = malloc(size);
 	if (!*ptr)
+	{
+		perror("malloc");
 		return ;
+	}
 }
 
 int	ft_isquote(int c)

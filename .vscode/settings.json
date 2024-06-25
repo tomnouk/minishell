@@ -6,6 +6,8 @@
         "readline.h": "c",
         "stdio.h": "c",
         "expander.h": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "string.h": "c",
+        "libft.h": "c"
     }
 }

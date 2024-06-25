@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/25 15:51:15 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/06/25 23:36:26 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,17 @@ void    test_export(t_data data, t_list  *tokens)
     }
 }
 
+void    test_cd(t_data data, t_list  *tokens)
+{
+    t_list *current = tokens;
+    while (current != NULL) {
+        t_tkn_data *tokenData = (t_tkn_data *)current->content;
+        if (tokenData->type == WORD_CD)
+            ft_cd(data.tokens, data.mini_env);
+        current = current->next;
+    }
+}
+
 int main (int argc, char **argv, char **env)
 {
 	t_data data;
@@ -98,10 +109,11 @@ int main (int argc, char **argv, char **env)
 	ft_tokenizing(&data);
 	//ft_parsing(&data);
 	//printTokens(data.tokens);
-    // test_export(data, data.tokens);
+    test_export(data, data.tokens);
+    test_cd(data, data.tokens);
     // printf("After export:\n");
-    // print_env(data);
-	printTokens(data.tokens);
+    print_env(data);
+	//printTokens(data.tokens);
 	/*if (data.tokens != NULL)
 	{
 		ft_parsing(&data);
