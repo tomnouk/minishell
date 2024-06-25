@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/25 23:36:26 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/26 00:26:03 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,24 @@ void    test_cd(t_data data, t_list  *tokens)
         current = current->next;
     }
 }
+/*
+int main (int argc, char **argv, char **env)
+{
+    t_data data;
+    
+    data.mini_env = get_env(data, env);
+    while (1)
+    {
+        data.args = readline("minishell $ ");
+        if (!data.args)
+            break;
+        if (ft_strlen(data.args) != 0)
+        {
+            ft_tokenizing(&data);
+        }
+    }
+}
+*/
 
 int main (int argc, char **argv, char **env)
 {
@@ -101,7 +119,7 @@ int main (int argc, char **argv, char **env)
 
 	argc = 0;
 	argv = 0;
-	data.args = readline("Enter a string: ");
+	data.args = readline("minishell $ ");
 	data.mini_env = get_env(data, env);
 	//print_env(data);
 	data.tokens = NULL;
