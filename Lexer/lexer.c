@@ -3,20 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/25 14:11:24 by anomourn         ###   ########.fr       */
-=======
-/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/24 20:53:16 by rpaic            ###   ########.fr       */
->>>>>>> 249c45c6885c50737d50075fa90fcc6e5ce3bc92
+/*   Created: 2024/06/25 15:53:19 by anomourn          #+#    #+#             */
+/*   Updated: 2024/06/25 15:53:43 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 # include "../headers/minishell.h"
 
@@ -90,10 +82,6 @@ void ft_tokenizing(t_data *data)
 			ft_meta_token(data, type);
 	}
 	expander(data->mini_env, data->tokens);
-<<<<<<< HEAD
-	//ft_cd(data->tokens);
-	define_builtins(token->token, token->type);
-=======
 	define_builtins(data->tokens);
->>>>>>> 249c45c6885c50737d50075fa90fcc6e5ce3bc92
 }
+

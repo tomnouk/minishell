@@ -6,7 +6,7 @@
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/25 15:34:34 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:51:15 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,6 @@ int main (int argc, char **argv, char **env)
     char **av = argv;
     av[0] = av[0];
 
-	t_data	data;
-	char	cwd[1024];
-
-	// get path
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
-		printf("path: %s\n", cwd);
-	else
-	{
-		perror("getcwd() error");
-		return 1;
-	}
 	argc = 0;
 	argv = 0;
 	data.args = readline("Enter a string: ");
