@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 21:16:30 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/25 14:11:55 by anomourn         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/06/25 15:34:34 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 # include "./headers/minishell.h"
 
@@ -68,9 +69,25 @@ void printTokens(t_list *tokens) {
     }
 }
 
-
-int main(int argc, char **argv, char **env)
+void    test_export(t_data data, t_list  *tokens)
 {
+    t_list *current = tokens;
+    while (current != NULL) {
+        t_tkn_data *tokenData = (t_tkn_data *)current->content;
+        if (tokenData->type == WORD_EXPORT)
+            ft_export(data, current);
+        current = current->next;
+    }
+}
+
+int main (int argc, char **argv, char **env)
+{
+	t_data data;
+    int ac = argc;  // <----- AGGIUNTO PER EVITARE WARNING
+    ac++;
+    char **av = argv;
+    av[0] = av[0];
+
 	t_data	data;
 	char	cwd[1024];
 
@@ -91,6 +108,10 @@ int main(int argc, char **argv, char **env)
 	printf("You entered: %s\n", data.args);
 	ft_tokenizing(&data);
 	//ft_parsing(&data);
+	//printTokens(data.tokens);
+    // test_export(data, data.tokens);
+    // printf("After export:\n");
+    // print_env(data);
 	printTokens(data.tokens);
 	/*if (data.tokens != NULL)
 	{
@@ -100,3 +121,5 @@ int main(int argc, char **argv, char **env)
 	free(data.args);
 	return 0;
 }
+//https://www.gnu.org/software/bash/manual/bash.html#Shell-Operation
+

@@ -5,10 +5,11 @@
 #                                                     +:+ +:+         +:+      #
 #    By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/07 20:49:57 by aeid              #+#    #+#              #
-#    Updated: 2024/06/25 12:58:19 by anomourn         ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2024/06/25 15:33:11 by anomourn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = minishell
 CC = cc -g
@@ -19,7 +20,7 @@ RM = rm -f
 #PRINT_DIR = ./Printft
 LIBFT_DIR = ./Libft
 
-H_SRC = lexer.h minishell.h builtins.h
+H_SRC = lexer.h minishell.h builtins.h expander.h parsing.h
 H_DIR = headers/
 H_PATH = $(addprefix $(H_DIR), $(H_SRC))
 
@@ -37,7 +38,7 @@ L_OBJ = $(L_PATH:.c=.o)
 # P_PATH = $(addprefix $(P_DIR), $(P_SRC))
 # P_OBJ = $(P_PATH:.c=.o)
 
-B_SRC = get_env.c cd.c env_utils.c cd_utils.c
+B_SRC = check_env_arg.c export.c get_env.c
 B_DIR = builtins/
 B_PATH = $(addprefix $(B_DIR), $(B_SRC))
 B_OBJ = $(B_PATH:.c=.o)
