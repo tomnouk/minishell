@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+         #
+#    By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/07 20:49:57 by aeid              #+#    #+#              #
-#    Updated: 2024/06/21 23:16:58 by aeid             ###   ########.fr        #
+#    Updated: 2024/06/24 20:29:59 by rpaic            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM = rm -f
 #PRINT_DIR = ./Printft
 LIBFT_DIR = ./Libft
 
-H_SRC = lexer.h minishell.h builtins.h
+H_SRC = lexer.h minishell.h builtins.h expander.h parsing.h
 H_DIR = headers/
 H_PATH = $(addprefix $(H_DIR), $(H_SRC))
 
@@ -37,7 +37,7 @@ L_OBJ = $(L_PATH:.c=.o)
 # P_PATH = $(addprefix $(P_DIR), $(P_SRC))
 # P_OBJ = $(P_PATH:.c=.o)
 
-B_SRC = get_env.c
+B_SRC = check_env_arg.c export.c get_env.c
 B_DIR = builtins/
 B_PATH = $(addprefix $(B_DIR), $(B_SRC))
 B_OBJ = $(B_PATH:.c=.o)

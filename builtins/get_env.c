@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 19:58:33 by rpaic             #+#    #+#             */
-/*   Updated: 2024/06/20 20:02:09 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/25 13:25:41 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ t_list    *get_env(t_data data, char **env)
     
     data.mini_env = NULL;
     i = 0;
+    if (!env)
+        return (printf("no env"), NULL);
     while(env[i])
     {
         env_list = ft_lstnew((char *)env[i]);
         if (!env_list) //garbge_collector
             return (NULL);
         ft_lstadd_back(&data.mini_env, env_list);
-        env_list = NULL;
         i++;
     }
     return (data.mini_env);

@@ -6,7 +6,7 @@
 /*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:21 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/21 21:34:41 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/06/24 21:04:51 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void ft_word_token(t_data *data, t_types type);
 void dollar_meta(t_data *data, t_list *node, t_tkn_data *token);
 void pipe_meta(t_data *data, t_list *node, t_tkn_data *token);
 void redirect_meta(t_data *data, t_list *node, t_tkn_data *token);
-void define_builtins(char *tkn_str, t_types tkn_type);
+void define_builtins(t_list *tokens);
 void get_variable_len(t_data *data, int dol_position, int *variable_len);
 
 #endif

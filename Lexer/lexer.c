@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:39:40 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/22 19:58:23 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/24 20:53:16 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ void ft_tokenizing(t_data *data)
 			ft_meta_token(data, type);
 	}
 	expander(data->mini_env, data->tokens);
-	//define_builtins(token->token, token->type);
+	define_builtins(data->tokens);
 }
