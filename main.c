@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/26 00:26:03 by aeid             ###   ########.fr       */
+/*   Updated: 2024/06/26 15:53:01 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ int main (int argc, char **argv, char **env)
     test_export(data, data.tokens);
     test_cd(data, data.tokens);
     // printf("After export:\n");
-    print_env(data);
-	//printTokens(data.tokens);
+    //print_env(data);
+	printTokens(data.tokens);
 	/*if (data.tokens != NULL)
 	{
 		ft_parsing(&data);

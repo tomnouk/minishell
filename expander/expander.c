@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 22:03:20 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/25 15:34:22 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/06/26 23:38:07 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void dquote_expander(t_list *mini_env, int variable_len, char **tkn_str)
 		if ((*tkn_str)[i] == '$' && (*tkn_str)[i + 1] != '\0' && (*tkn_str)[i + 1] != ' ')
 		{
 			i++;
-			while (ft_isprint((*tkn_str)[i]) && (*tkn_str)[i] != '\0' && !ft_ismeta((*tkn_str)[i]) && variable_len > 0)
+			while (ft_isprint((*tkn_str)[i]) && (*tkn_str)[i] != '\0' && !ft_ismeta((*tkn_str)[i]) && variable_len > 0 && (*tkn_str)[i] != '$')
 			{
 				i++;
 				variable_len--;

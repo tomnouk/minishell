@@ -27,7 +27,7 @@ void	set_env(char *name, char *path, t_list *mini_env)
 	{
 		if (find_path((char *)current->content, name))
 		{
-			memory_allocator((void **)&new_entry, new_entry_len);
+			//memory_allocator((void **)&new_entry, new_entry_len);
 			ft_strlcat(new_entry, name, new_entry_len);
 			ft_strlcat(new_entry, "=", new_entry_len);
 			ft_strlcat(new_entry, path, new_entry_len);
