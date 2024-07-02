@@ -8,6 +8,8 @@
         "expander.h": "c",
         "cstdlib": "c",
         "string.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "compare": "c",
+        "type_traits": "c"
     }
 }

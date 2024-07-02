@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:04 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/25 15:49:30 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:48:41 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ extern t_data	g_data;
 
 # include "lexer.h"
 # include "builtins.h"
-# include "expander.h"
-//# include "parsing.h"
+# include "parsing.h"
 
 #endif

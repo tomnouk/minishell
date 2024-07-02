@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:53:19 by anomourn          #+#    #+#             */
-/*   Updated: 2024/06/25 15:53:43 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:32:21 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void define_type(char *args, int cur, t_types *type)
 		*type = WORD;
 }
 
-void ft_tokenizing(t_data *data)
+void ft_lexer(t_data *data)
 {
 	t_types type;
 
@@ -81,7 +81,5 @@ void ft_tokenizing(t_data *data)
 		else
 			ft_meta_token(data, type);
 	}
-	expander(data->mini_env, data->tokens);
-	define_builtins(data->tokens);
 }
 

@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/06/26 15:53:01 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/02 23:07:30 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,8 @@ int main (int argc, char **argv, char **env)
 	//print_env(data);
 	data.tokens = NULL;
 	printf("You entered: %s\n", data.args);
-	ft_tokenizing(&data);
+	ft_lexer(&data);
+    ft_parsing(&data, data.tokens);
 	//ft_parsing(&data);
 	//printTokens(data.tokens);
     test_export(data, data.tokens);

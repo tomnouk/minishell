@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 18:10:35 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/24 19:48:46 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/02 23:32:58 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,7 @@ int static ft_checker(t_data *data, int *quote_flag, t_tkn_data *token)
 	{
 		(*quote_flag)++;
 		(data->current)++;
-		while (data->args[data->current] != '\"')
+		while (data->args[data->current] != '\"' && data->args[data->current] != '\0')
 		{
 			if (data->args[data->current] == '$')
 				get_variable_len(data, data->current, &token->variable_len);
@@ -164,7 +164,7 @@ int static ft_checker(t_data *data, int *quote_flag, t_tkn_data *token)
 	{
 		(*quote_flag)++;
 		(data->current)++;
-		while (data->args[data->current] != '\'')
+		while (data->args[data->current] != '\'' && data->args[data->current] != '\0')
 			(data->current)++;
 		if (data->args[data->current] == '\'')
 			(*quote_flag)++;
@@ -191,12 +191,19 @@ void ft_word_token(t_data *data, t_types type)
 	quote_flag = 0;
 	token->type = type;
 	token->variable_len = 0;
+	token->cmd_exec_path = NULL;
 	string = NULL;
 	while (data->args[data->current])
 	{
 		if (ft_checker(data, &quote_flag, token))
 			break ;
 		(data->current)++; 
+	}
+	if (quote_flag % 2 != 0)
+	{
+		ft_putstr_fd("minishell: syntax error: unexpected end of file\n", 2);
+		//g_global.exit_status = 258;
+		return ;
 	}
 	if (!(quote_flag % 2) && quote_flag != 0)
 		quote_removal_copy(string, data, token, node, quote_flag);

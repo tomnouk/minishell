@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   meta_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:54:12 by anomourn          #+#    #+#             */
-/*   Updated: 2024/06/25 15:54:17 by anomourn         ###   ########.fr       */
+/*   Updated: 2024/07/02 23:32:44 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void ft_meta_token(t_data *data, t_types type)
 	memory_allocator((void **)&token, sizeof(t_tkn_data));
 	token->type = type;
 	token->variable_len = 0;
+	token->cmd_exec_path = NULL;
 	meta_token_handler(data, node, token);
 	//(data->current)--;
 }
