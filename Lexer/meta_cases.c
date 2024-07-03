@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:13:57 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/24 20:13:13 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/03 22:30:20 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void redirect_meta(t_data *data, t_list *node, t_tkn_data *token)
 {
 	if (data->args[data->current] == '>')
 	{
-		data->current++;
+		(data->current)++;
 		if (data->args[data->current] == '>')
 			(data->current)++;	
 	}
 	else if (data->args[data->current] == '<')
 	{
-		data->current++;
+		(data->current)++;
 		if (data->args[data->current] == '<')
 			(data->current)++;
 	}
@@ -32,6 +32,7 @@ void redirect_meta(t_data *data, t_list *node, t_tkn_data *token)
 	node->content = token;
 	node->next = NULL;
 	ft_lstadd_back(&data->tokens, node);
+	(data->current)--;
 }
 
 void pipe_meta(t_data *data, t_list *node, t_tkn_data *token)
@@ -41,6 +42,7 @@ void pipe_meta(t_data *data, t_list *node, t_tkn_data *token)
 	node->content = token;
 	node->next = NULL;
 	ft_lstadd_back(&data->tokens, node);
+	(data->current)--;
 }
 
 //$ sign can be followed by alpha and _

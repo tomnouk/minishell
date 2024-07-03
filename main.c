@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/07/03 20:48:06 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/07/04 00:01:52 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,13 +128,13 @@ int main (int argc, char **argv, char **env)
 	ft_lexer(&data);
     ft_parsing(&data, data.tokens);
 	//printTokens(data.tokens);
-    test_export(data, data.tokens);
+    //test_export(data, data.tokens);
     //test_cd(data, data.tokens);
     // printf("After export:\n");
-    solo_export(data);
-    ft_printf("After export:\n");
-    print_env(data);
-	//printTokens(data.tokens);
+    //solo_export(data);
+    //ft_printf("After export:\n");
+    //print_env(data);
+	printTokens(data.tokens);
 	/*if (data.tokens != NULL)
 	{
 		ft_parsing(&data);

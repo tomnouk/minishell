@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:04 by aeid              #+#    #+#             */
-/*   Updated: 2024/07/03 18:08:10 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/07/03 23:57:04 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct	s_data
 }	t_data;
 
 extern t_data	g_data;
+
+void printTokens(t_list *tokens);
 
 # include "lexer.h"
 # include "builtins.h"

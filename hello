@@ -1,0 +1,17 @@
+total 140
+drwxr-xr-x 2 aeid 2023_florence  4096 Jul  3 21:57 builtins
+-rw-r--r-- 1 aeid 2023_florence    11 Jul  3 21:22 exit
+-rw-r--r-- 1 aeid 2023_florence    26 Jul  3 22:07 h
+drwxr-xr-x 2 aeid 2023_florence  4096 Jul  3 20:53 headers
+-rw-r--r-- 1 aeid 2023_florence     0 Jul  3 22:32 hello
+drwxr-xr-x 2 aeid 2023_florence  4096 Jul  3 22:30 Lexer
+drwxr-xr-x 2 aeid 2023_florence  4096 Jul  3 21:58 Libft
+-rw-r--r-- 1 aeid 2023_florence  4589 Jul  3 21:59 main.c
+-rw-r--r-- 1 aeid 2023_florence  9080 Jul  3 21:59 main.o
+-rw-r--r-- 1 aeid 2023_florence  2173 Jul  3 20:53 Makefile
+-rwxr-xr-x 1 aeid 2023_florence 67216 Jul  3 22:30 minishell
+drwxr-xr-x 2 aeid 2023_florence  4096 Jun 21 19:40 my minishell_guide
+drwxr-xr-x 2 aeid 2023_florence  4096 Jul  3 22:14 parsing
+drwxr-xr-x 2 aeid 2023_florence  4096 Jul  3 21:58 Printft
+-rw-r--r-- 1 aeid 2023_florence    12 Jun 12 18:18 README.md
+drwxr-xr-x 2 aeid 2023_florence  4096 Jul  3 20:53 test

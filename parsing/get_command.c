@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 17:08:41 by aeid              #+#    #+#             */
-/*   Updated: 2024/07/03 18:13:01 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/03 22:14:03 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void define_commands(t_list *tokens, char **path)
 	string = NULL;
 	while (current)
 	{
-		string = (t_tkn_data *)tokens->content;
-		if (string->type != WORD_ENV)
+		string = (t_tkn_data *)current->content;
+		if (string->type == WORD)
 			string->cmd_exec_path = get_command(path, string->token);
 		if (string->cmd_exec_path == NULL)
 			printf("Command not found\n");
