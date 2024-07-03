@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 19:58:33 by rpaic             #+#    #+#             */
-/*   Updated: 2024/06/25 20:55:39 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/03 19:35:23 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list    *get_env(t_data data, char **env)
     data.mini_env = NULL;
     i = 0;
     if (!env)
-        return (printf("no env"), NULL);
+        return (ft_printf("no env"), NULL);
     while(env[i])
     {
         env_list = ft_lstnew((char *)env[i]);
@@ -38,8 +38,35 @@ void    print_env(t_data data)
     
     temp = data.mini_env;
     while (temp)
-	{
-		printf("%s\n", (char *)temp->content);
-		temp = temp->next;
-	}
+    {
+        if (ft_strchr((char *)temp->content, '='))
+            ft_printf("%s\n", (char *)temp->content);
+        temp = temp->next;
+    }
+}
+
+void    solo_export(t_data data)
+{
+    t_list *temp;
+    char   *str;
+    
+    temp = data.mini_env;
+    while (temp)
+    {
+        write(1, "declare -x ", 11);
+        if (ft_strchr((char *)temp->content, '='))
+        {
+            str = (char *)temp->content;
+            while (*(char *)str && *(char *)str != '=')
+                write(1, (char *)str++, 1);
+            write(1, (char *)str++, 1);
+            write(1, "\"", 1);
+            while (*(char *)str)
+                write(1, (char *)str++, 1);
+            write(1, "\"\n", 2);
+        }
+        else
+            ft_printf("%s\n", (char *)temp->content);
+        temp = temp->next;
+    }
 }

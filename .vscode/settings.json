@@ -10,6 +10,7 @@
         "string.h": "c",
         "libft.h": "c",
         "compare": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "ft_printf.h": "c"
     }
 }

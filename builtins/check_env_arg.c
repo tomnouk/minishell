@@ -6,7 +6,7 @@
 /*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 17:25:05 by rpaic             #+#    #+#             */
-/*   Updated: 2024/06/24 20:23:52 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/07/03 11:46:33 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,28 @@ static void    check_left_side(char *str, int *left_side_type)
     char *end;
     
     if (*left_side_type == 1)
-        end = ft_strchr(str, '=');
+        end = ft_strchr(str, '='); //=
     else if (*left_side_type == 2)
-        end = ft_strchr(str, '+');
+        end = ft_strchr(str, '+'); //+=
     else
-        end = str + ft_strlen(str);
+        end = str + ft_strlen(str);  //no = or +=
     while(str != end)
     {
         if ((ft_isalnum(*str) == 0) && *str != '_')
         {
-            left_side_type = 0;
+            *left_side_type = 0;  //ERROR but test it working
             return ;
         }
         str++;
     }
 }
 
-void    check_env_arg(char *str, int *left_side_type)
+void    check_left_side_export(char *str, int *left_side_type)
 {
     *left_side_type = str_type(str);
     check_left_side(str, left_side_type);
+    //left_side_type == 0  ERROR
+    //left_side_type = 1   export a=
+    //left_side_type = 2   export a+=
+    //left_side_type = -1  OK and alone -> export a
 }

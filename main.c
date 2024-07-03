@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/07/03 17:07:35 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/03 20:48:06 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int g_status;
 //     while (current != NULL) 
 // 	{
 //         t_tkn_data *tokenData = (t_tkn_data *)current->content;
-//         printf("%s\n", tokenData->token);
+//         ft_printf("%s\n", tokenData->token);
 //         current = current->next;
 //     }
 // }
@@ -31,7 +31,7 @@ int g_status;
     t_list *current = tokens;
     while (current != NULL) {
         t_tkn_data *tokenData = (t_tkn_data *)current->content;
-        printf("%s\n", tokenData->token);
+        ft_printf("%s\n", tokenData->token);
         current = current->next;
     }
 }*/
@@ -81,16 +81,16 @@ void    test_export(t_data data, t_list  *tokens)
     }
 }
 
-void    test_cd(t_data data, t_list  *tokens)
-{
-    t_list *current = tokens;
-    while (current != NULL) {
-        t_tkn_data *tokenData = (t_tkn_data *)current->content;
-        if (tokenData->type == WORD_CD)
-            ft_cd(data.tokens, data.mini_env);
-        current = current->next;
-    }
-}
+// void    test_cd(t_data data, t_list  *tokens)
+// {
+//     t_list *current = tokens;
+//     while (current != NULL) {
+//         t_tkn_data *tokenData = (t_tkn_data *)current->content;
+//         if (tokenData->type == WORD_CD)
+//             ft_cd(data.tokens, data.mini_env);
+//         current = current->next;
+//     }
+// }
 /*
 int main (int argc, char **argv, char **env)
 {
@@ -127,19 +127,20 @@ int main (int argc, char **argv, char **env)
 	printf("You entered: %s\n", data.args);
 	ft_lexer(&data);
     ft_parsing(&data, data.tokens);
-	//ft_parsing(&data);
 	//printTokens(data.tokens);
     test_export(data, data.tokens);
-    test_cd(data, data.tokens);
+    //test_cd(data, data.tokens);
     // printf("After export:\n");
-    //print_env(data);
-	printTokens(data.tokens);
+    solo_export(data);
+    ft_printf("After export:\n");
+    print_env(data);
+	//printTokens(data.tokens);
 	/*if (data.tokens != NULL)
 	{
 		ft_parsing(&data);
 	}*/
 
-	free(data.args);
+	//free(data.args);
 	return 0;
 }
 //https://www.gnu.org/software/bash/manual/bash.html#Shell-Operation

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+         #
+#    By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/07/03 17:22:34 by aeid             ###   ########.fr        #
+#    Updated: 2024/07/03 20:49:50 by rpaic            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,10 @@
 NAME = minishell
 CC = cc -g
 CFLAGS = -Wall -Wextra -Werror
-#PFLAGS = -L./Printft -lftprintf
+PFLAGS = -L./Printft -lftprintf
 LFLAGS = -L./Libft -lft
 RM = rm -f
-#PRINT_DIR = ./Printft
+PRINT_DIR = ./Printft
 LIBFT_DIR = ./Libft
 
 H_SRC = lexer.h minishell.h builtins.h parsing.h
@@ -48,18 +48,21 @@ B_OBJ = $(B_PATH:.c=.o)
 
 $(NAME): $(M_OBJ) $(L_OBJ) $(B_OBJ) $(P_OBJ)
 	make -C $(LIBFT_DIR)
-	$(CC) $(M_OBJ) $(L_OBJ) $(B_OBJ) $(P_OBJ) $(LFLAGS) -lreadline -o $(NAME)
+	make -C $(PRINT_DIR)
+	$(CC) $(M_OBJ) $(L_OBJ) $(B_OBJ) $(P_OBJ) $(LFLAGS) $(PFLAGS) -lreadline -o $(NAME)
 
 all: $(NAME)
 
 clean:
 	$(RM) $(M_OBJ) $(L_OBJ) $(B_OBJ) $(P_OBJ)
 	
-
 fclean: clean
 	$(RM) $(NAME)
 	$(RM) $(LIBFT_DIR)/libft.a
+	$(RM) $(PRINT_DIR)/libftprintf.a
 	make clean -C $(LIBFT_DIR)
+	make clean -C $(PRINT_DIR)
+	
 re: fclean all
 
 .PHONY: all clean fclean re

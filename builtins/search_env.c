@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 22:02:12 by aeid              #+#    #+#             */
-/*   Updated: 2024/06/25 23:40:22 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/03 11:50:08 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char *search_env(t_list *mini_env, char *variable)
 	char *after_equal_sign;
 
 	current = mini_env;
-	path = NULL;
+	path = NULL; //not mallcd
 	after_equal_sign = NULL;
 	while (current)
 	{

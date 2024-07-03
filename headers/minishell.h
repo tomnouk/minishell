@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:50:04 by aeid              #+#    #+#             */
-/*   Updated: 2024/07/02 23:48:41 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/03 18:08:10 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 
 # include "../Libft/libft.h"
-//# include "../Printft/ft_printf.h"
+# include "../Printft/ft_printf.h"
 # include <readline/readline.h>
 # include <stdio.h>
 #include <stdlib.h>
