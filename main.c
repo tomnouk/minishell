@@ -6,7 +6,7 @@
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/07/02 23:07:30 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/03 17:07:35 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ const char* getTypeName(t_types type) {
 		case WORD_PWD: return "WORD_PWD";
 		case WORD_DOL: return "WORD_DOL";
         case WORD: return "WORD";
+        case COMMAND: return "COMMAND";
         case WORD_WITH_DQUOTE_INSIDE: return "WORD_WITH_DQUOTE_INSIDE";
         default: return "UNKNOWN_TYPE";
     }

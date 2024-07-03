@@ -6,7 +6,7 @@
 #    By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/07/02 23:02:49 by aeid             ###   ########.fr        #
+#    Updated: 2024/07/03 17:10:41 by aeid             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ L_DIR = Lexer/
 L_PATH = $(addprefix $(L_DIR), $(L_SRC))
 L_OBJ = $(L_PATH:.c=.o)
 
-P_SRC = parsing.c expander.c
+P_SRC = parsing.c expander.c get_command.c
 P_DIR = parsing/
 P_PATH = $(addprefix $(P_DIR), $(P_SRC))
 P_OBJ = $(P_PATH:.c=.o)
