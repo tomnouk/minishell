@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/14 17:57:47 by aeid              #+#    #+#             */
-/*   Updated: 2024/07/03 17:39:02 by aeid             ###   ########.fr       */
+/*   Created: 2024/07/03 17:20:10 by aeid              #+#    #+#             */
+/*   Updated: 2024/07/03 20:28:52 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../headers/minishell.h"
 
-static void ft_free_path(char **path)
-{
-	int i;
 
-	i = 0;
-	while (path[i])
+
+
+void ft_parser(t_data *data, t_list *tokens)
+{
+	t_list *current;
+	t_tkn_data *string;
+
+	current = tokens;
+	string = NULL;
+	while (current)
 	{
-		free(path[i]);
-		i++;
+		string = (t_tkn_data *)current->content;
+		
+		current = current->next;
 	}
-	free(path);
-}
-
-void ft_parsing(t_data *data, t_list *tokens)
-{
-	char **path;
-	
-	path = get_cmd_path(data->mini_env);
-	data->list_size = ft_lstsize(tokens);
-	expander(data->mini_env, tokens);
-	define_builtins(tokens);
-	define_commands(tokens, path);
-	ft_parser(data, tokens);
-	ft_free_path(path);
 }
