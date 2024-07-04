@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: anoukmournard <anoukmournard@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 12:47:26 by rpaic             #+#    #+#             */
-/*   Updated: 2023/10/18 12:47:28 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/07/04 10:55:02 by anoukmourna      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <string.h>
-#include <bsd/bsd.h>
+//#include <bsd/bsd.h>
 #include "libft.h"
 
 /*size_t	ft_strlen(const char *s)

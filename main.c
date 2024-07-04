@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: anoukmournard <anoukmournard@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/07/04 00:01:52 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/04 14:36:31 by anoukmourna      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 t_data g_data;
 
 int g_status;
+
+int	g_exit_code = 0;
 
 //int main (int argc, char **argv, char **env)
 // static void printTokens(t_list *tokens) {
@@ -113,8 +115,7 @@ int main (int argc, char **argv, char **env)
 int main (int argc, char **argv, char **env)
 {
 	t_data data;
-    int ac = argc;  // <----- AGGIUNTO PER EVITARE WARNING
-    ac++;
+    (void)argc;
     char **av = argv;
     av[0] = av[0];
 
@@ -125,6 +126,7 @@ int main (int argc, char **argv, char **env)
 	//print_env(data);
 	data.tokens = NULL;
 	printf("You entered: %s\n", data.args);
+    ft_signals();
 	ft_lexer(&data);
     ft_parsing(&data, data.tokens);
 	//printTokens(data.tokens);

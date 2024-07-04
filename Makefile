@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+         #
+#    By: anoukmournard <anoukmournard@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: Invalid date        by                   #+#    #+#              #
-#    Updated: 2024/07/03 20:49:50 by rpaic            ###   ########.fr        #
+#    Updated: 2024/07/04 14:53:03 by anoukmourna      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ H_SRC = lexer.h minishell.h builtins.h parsing.h
 H_DIR = headers/
 H_PATH = $(addprefix $(H_DIR), $(H_SRC))
 
-M_SRC = main.c
+M_SRC = main.c signals.c
 M_OBJ = $(M_SRC:.c=.o)
 
 L_SRC = lexer.c word_token.c utils.c meta_token.c special_token.c \

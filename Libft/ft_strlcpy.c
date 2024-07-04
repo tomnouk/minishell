@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: anoukmournard <anoukmournard@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:39:50 by rpaic             #+#    #+#             */
-/*   Updated: 2023/10/11 16:39:53 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/07/04 10:54:41 by anoukmourna      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <bsd/string.h>
+//#include <bsd/string.h>
 #include <stdlib.h>
 #include "libft.h"
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: anoukmournard <anoukmournard@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:59:27 by rpaic             #+#    #+#             */
-/*   Updated: 2023/10/12 17:59:29 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/07/04 10:54:18 by anoukmourna      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
-#include <bsd/string.h>
+//#include <bsd/string.h>
 #include <unistd.h>
 #include "libft.h"
 
