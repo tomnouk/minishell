@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpaic <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 16:32:16 by rpaic             #+#    #+#              #
-#    Updated: 2023/11/07 16:32:19 by rpaic            ###   ########.fr        #
+#    Updated: 2024/07/15 18:31:19 by anomourn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,14 +25,13 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "my printf is compiling"
+	@echo "\e[0;35m ----> PRINTF compliled with succes\e[0;m"
 	
 %.o: %.c ft_printf.h
 	@$(COMP) $(WCHECK) -c $< -o $@
 	
 clean:
 	@rm -f $(OBJ)
-	@echo ".o removed"
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Library gone"
@@ -40,3 +39,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+.SILENT:

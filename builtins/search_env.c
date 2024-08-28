@@ -3,22 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   search_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 22:02:12 by aeid              #+#    #+#             */
-/*   Updated: 2024/07/03 11:50:08 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/08/10 21:32:55 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//this function will always return a pointer to the start after = sign
+#include "../headers/minishell.h"
 
-# include "../headers/minishell.h"
-
-char *find_path(char *curr_content, char *variable)
+char	*find_path(char *curr_content, char *variable)
 {
-	char *eq;
-	char *path;
-	size_t len;
+	char	*eq;
+	char	*path;
+	size_t	len;
 
 	eq = NULL;
 	path = NULL;
@@ -35,21 +33,22 @@ char *find_path(char *curr_content, char *variable)
 	return (NULL);
 }
 
-char *search_env(t_list *mini_env, char *variable)
+char	*search_env(t_list *mini_env, char *variable, t_data *data)
 {
-	t_list *current;
-	char *path;
-	char *after_equal_sign;
+	t_list	*current;
+	char	*path;
+	char	*after_equal_sign;
 
 	current = mini_env;
-	path = NULL; //not mallcd
+	path = NULL;
 	after_equal_sign = NULL;
 	while (current)
 	{
 		path = find_path((char *)current->content, variable);
 		if (path)
 		{
-			memory_allocator((void **)&after_equal_sign, ft_strlen(path) + 1);
+			memory_allocator((void **)&after_equal_sign, ft_strlen(path) + 1,
+				data);
 			ft_strlcpy(after_equal_sign, path, ft_strlen(path) + 1);
 			return (after_equal_sign);
 		}

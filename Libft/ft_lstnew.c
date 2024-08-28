@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 10:45:28 by aeid              #+#    #+#             */
-/*   Updated: 2023/11/10 14:42:17 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/08 11:49:40 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,16 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*new;
+	t_list	*new_list;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (new == NULL)
+	new_list = malloc(sizeof(t_list));
+	if (!new_list)
 		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	return (new);
+	new_list->content = content;
+	if (ft_strchr((char *)content, '='))
+		new_list->print = 1;
+	else
+		new_list->print = 0;
+	new_list->next = NULL;
+	return (new_list);
 }

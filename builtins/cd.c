@@ -1,102 +1,109 @@
 /* ************************************************************************** */
-/*	                                                                          */
+/*		                                                                      */
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/22 19:33:25 by anoukmourna       #+#    #+#             */
+/*   Created: 2024/06/22 19:33:25 by aeid              #+#    #+#             */
 /*   Updated: 2024/06/24 19:16:52 by anomourn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../headers/minishell.h"
+#include "../headers/minishell.h"
 
-void	ft_cd(t_list *tokens, t_list *mini_env)
+char	*get_cd_path(t_list *tokens, t_data *data, t_list *mini_env)
 {
-	char	*old_pwd;
-	char	cwd[1024];
-	char	*path;
-	char	*new_pwd;
+	char	*home;
 
-	if (!tokens || !tokens->next)
+	home = NULL;
+	if (tokens->next == NULL
+		|| (ft_strlen(((t_tkn_data *)tokens->next->content)->token) == 0))
 	{
-		path = search_env(mini_env, "HOME");
-		if (!path)
+		home = search_env(mini_env, "HOME", data);
+		if (!home)
 		{
-			write(STDERR_FILENO, "minishell: cd: HOME not set\n", 29);
-			return ;
+			ft_putstr_fd("minishell: cd: HOME not set\n", 2);
+			g_exit_status = 1;
+			return (NULL);
 		}
 	}
-	old_pwd = getcwd(cwd, sizeof(cwd));
-	if (old_pwd == NULL)
-	{
-		perror("getcwd");
-		return ;
-	}
-	if (chdir(path) != 0)
-	{
-		perror("cd");
-		return ;
-	}
-	new_pwd = getcwd(cwd, sizeof(cwd));
-	if (new_pwd == NULL)
-	{
-		perror("getcwd");
-		return ;
-	}
-	set_env("OLDPWD", old_pwd, mini_env);
-	set_env("PWD", new_pwd, mini_env);
+	return (home);
 }
 
-/*
-void	ft_cd(t_list *tokens, t_list *env)
+int	old_pwd(t_data *data)
 {
-	char	*old_pwd;
-	char	cwd[1024];
-	char	*path;
-	char	*new_pwd;
-	t_list *current;
-	t_tkn_data *data;
+	char	cwd[PATH_MAX];
 
-	current = tokens->next;
-	data = NULL;
-	if (current && current->next)
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
-		write(STDERR_FILENO, "minishell: cd: too many arguments\n", 35);
-		return ;
+		perror("getcwd error");
+		return (-1);
 	}
-	else if (!tokens || !current)
+	free(data->old_pwd);
+	data->old_pwd = ft_strdup(cwd);
+	if (data->old_pwd == NULL)
 	{
-		path = search_env(env, "HOME");
-		if (!path)
-		{
-			write(STDERR_FILENO, "minishell: cd: HOME not set\n", 29);
-			return ;
-		}
+		perror("strdup error");
+		return (-1);
 	}
-	else
-	{
-		data = (t_tkn_data *)current->content;
-		path = data->token;
-	}
-	old_pwd = getcwd(cwd, sizeof(cwd));
-	if (old_pwd == NULL)
-	{
-		perror("getcwd");
-		return ;
-	}
+	return (0);
+}
+
+int	change_direct(const char *path)
+{
+	if (!path)
+		return (-1);
 	if (chdir(path) != 0)
 	{
-		perror("cd");
-		return ;
+		perror("cd error");
+		g_exit_status = 1;
+		return (-1);
 	}
-	new_pwd = getcwd(cwd, sizeof(cwd));
-	if (new_pwd == NULL)
+	return (0);
+}
+
+int	up_pwd(t_data *data)
+{
+	char	cwd[PATH_MAX];
+
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
 	{
-		perror("getcwd");
-		return ;
+		perror("getcwd error");
+		return (-1);
 	}
-	set_env("OLDPWD", old_pwd, env);
-	set_env("PWD", new_pwd, env);
-}*/
+	free(data->pwd);
+	data->pwd = ft_strdup(cwd);
+	if (data->pwd == NULL)
+	{
+		perror("strdup error");
+		return (-1);
+	}
+	return (0);
+}
+
+int	ft_cd(t_list *tokens, t_data *data, t_list *mini_env)
+{
+	char		*path;
+	t_list		*temp;
+	bool		flag;
+
+	flag = true;
+	if (data->list_size > 2)
+	{
+		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
+		g_exit_status = 1;
+		return (-1);
+	}
+	temp = tokens;
+	path = get_cd_path(tokens, data, mini_env);
+	if (!path)
+		path = get_next_token_path(tokens, &temp, &flag);
+	if (old_pwd(data) == -1
+		|| change_direct(path) == -1 || up_pwd(data) == -1)
+		return (-1);
+	g_exit_status = 0;
+	if (flag)
+		free(path);
+	return (0);
+}

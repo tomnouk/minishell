@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rpaic <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: anomourn <anomourn@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/25 16:46:45 by rpaic             #+#    #+#              #
-#    Updated: 2023/10/25 16:46:48 by rpaic            ###   ########.fr        #
+#    Updated: 2024/07/15 18:43:22 by anomourn         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror 
 
 SRC = $(filter-out %_bonus.c,$(foreach D, . ,$(wildcard $(D)/*.c)))
 
@@ -27,7 +27,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(BONUS_OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@echo "LIBFT compliled with succes"
+	@echo "\e[0;35m ----> LIBFT compliled with succes\e[0;m"
 
 bonus:	$(BONUS_OBJ)
 	@ar rc $(NAME) $(BONUS_OBJ)
@@ -39,9 +39,10 @@ bonus:	$(BONUS_OBJ)
 
 test: libft.a
 	@$(CC) $(CFLAGS) $(p) -L. -lft -lbsd
+
 clean:
 	@rm -f $(OBJ) $(BONUS_OBJ)
-	@echo "Obj file removed."
+	@echo "\e[0;32m$< ----> $@\e[0;m"
 	
 fclean: clean
 	@rm -f $(NAME)
@@ -50,3 +51,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re bonus
+
+.SILENT:

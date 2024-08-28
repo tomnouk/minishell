@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rpaic <rpaic@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 17:38:58 by rpaic             #+#    #+#             */
-/*   Updated: 2024/06/25 21:56:12 by aeid             ###   ########.fr       */
+/*   Updated: 2024/07/07 19:59:17 by rpaic            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 # define LIBFT_H
 # include <stddef.h>  // Needed for size_t
 # include <stdlib.h>
+# include <stdbool.h> 
+
 /* Function prototypes */
 typedef struct s_list
 {
 	//char			*key;
 	//char			*value;
 	void			*content;
+	bool			print;
 	struct s_list	*next;
 }	t_list;
+
 /* Memory functions */
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);

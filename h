@@ -1,1 +1,0 @@
-minishell $ ^Chello h hi$

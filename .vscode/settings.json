@@ -1,16 +1,26 @@
 {
     "files.associations": {
-        "stddef.h": "c",
-        "stdlib.h": "c",
-        "minishell.h": "c",
-        "readline.h": "c",
-        "stdio.h": "c",
-        "expander.h": "c",
-        "cstdlib": "c",
-        "string.h": "c",
-        "libft.h": "c",
-        "compare": "c",
-        "type_traits": "c",
-        "ft_printf.h": "c"
-    }
+      "stddef.h": "c",
+      "stdlib.h": "c",
+      "minishell.h": "c",
+      "readline.h": "c",
+      "stdio.h": "c",
+      "expander.h": "c",
+      "cstdlib": "c",
+      "string.h": "c",
+      "libft.h": "c",
+      "compare": "c",
+      "type_traits": "c",
+      "ft_printf.h": "c",
+      "utils.h": "c",
+      "array": "c",
+      "string": "c",
+      "string_view": "c",
+      "ranges": "c",
+      "stdbool.h": "c",
+      "get_next_line.h": "c"
+    },
+    "[c]" : {
+    "editor.defaultFormatter": "keyhr.42-c-format"
+  }
 }

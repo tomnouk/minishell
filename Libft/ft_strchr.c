@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rpaic <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: aeid <aeid@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 20:18:01 by rpaic             #+#    #+#             */
-/*   Updated: 2023/10/13 20:18:03 by rpaic            ###   ########.fr       */
+/*   Updated: 2024/08/01 19:55:03 by aeid             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strchr(const char *s, int c)
 	i = 0;
 	if ((unsigned char)c == 0)
 		return ((char *)(s + ft_strlen(s)));
-	while (s[i])
+	while (s && s[i])
 	{
 		if ((unsigned char)s[i] == (unsigned char)c)
 			return ((char *)&s[i]);
