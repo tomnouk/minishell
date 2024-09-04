@@ -20,7 +20,6 @@ This project aims to improve understanding of processes, file descriptors, and t
 - **Redirections**: Support for input (`<`), output (`>`), append (`>>`), and heredoc (`<<`) redirections.
 - **Pipes**: Implement the pipe (`|`) functionality to connect commands.
 - **Environment Variables**: Handle environment variables and special variables like `$?` and `$$` (which returns the PID).
-- **Advanced Command Handling**: Support for logical operators `&&` and `||`, and wildcard expansion with `*`.
 
 #### **Compiling the Project**
 The **minishell** project includes a Makefile for easy compilation. Simply run:
